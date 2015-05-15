@@ -120,25 +120,19 @@ class Enigma:
             letter = self.rotors[0].move(letter, i1 + j, shift_up)
             letter = self.rotors[0].move(letter, 1, self.rotors[0].wire(True))
             letter = self.rotors[0].move(letter, -i1 - j, shift_up)
-
             letter = self.rotors[1].move(letter, i2, shift_up)
             letter = self.rotors[1].move(letter, 1, self.rotors[1].wire(True))
             letter = self.rotors[1].move(letter, -i2, shift_up)
-
             letter = self.rotors[2].move(letter, i3, shift_up)
             letter = self.rotors[2].move(letter, 1, self.rotors[2].wire(True))
             letter = self.rotors[2].move(letter, -i3, shift_up)
-
             letter = self.reflector.reflect(letter)
-
             letter = self.rotors[2].move(letter, i3, shift_up)
             letter = self.rotors[2].move(letter, 1, self.rotors[2].wire(False))
             letter = self.rotors[2].move(letter, -i3, shift_up)
-            
             letter = self.rotors[1].move(letter, i2, shift_up)
             letter = self.rotors[1].move(letter, 1, self.rotors[1].wire(False))
             letter = self.rotors[1].move(letter, -i2, shift_up)
-
             letter = self.rotors[0].move(letter, i1 + j, shift_up)
             letter = self.rotors[0].move(letter, 1, self.rotors[0].wire(False))
             letter = self.rotors[0].move(letter, -i1 - j, shift_up)
