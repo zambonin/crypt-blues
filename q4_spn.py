@@ -47,5 +47,3 @@ class SPN:
 
     def xor(self, arg1, arg2):
         return str(int(arg1) ^ int(arg2))
-
-SPN().encode('0000000000000000', '00111010100101001101011000111111')
