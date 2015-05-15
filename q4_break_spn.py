@@ -18,7 +18,8 @@ def gen_quadruples(chosen_xor='1011'):
 			for j in range(4):
 				bits1 = bits[i] + each[0] + '1001' + bits[j]
 				bits2 = bits[i] + each[1] + '1001' + bits[j]
-				quadruples.append((bits1, bits2, SPN().encode(bits1, key), SPN().encode(bits2, key)))
+				quadruples.append((bits1, bits2, SPN().encode(bits1, key),
+				                                 SPN().encode(bits2, key)))
 
 	return random.sample(quadruples, 200)
 

@@ -1,12 +1,10 @@
 \documentclass{article}
 
-% \usepackage{enumitem, inconsolata}
 \usepackage{amsthm, amsmath, color, listings, url}
 \usepackage[utf8]{inputenc}
 \usepackage[colorlinks=true,
             urlcolor=blue]{hyperref}
 \usepackage[a4paper,
-            total={210mm,297mm},
             left=20mm,
             right=20mm,
             top=20mm,
@@ -29,6 +27,8 @@
  
 \lstset{style=mystyle}
 
+\renewcommand*\theenumi{\textbf{\alph{enumi}}}
+
 \begin{document}
 
 \begin{center}
@@ -37,7 +37,7 @@
     Gustavo Zambonin, Ranieri Schroeder Althoff}
 \end{center}
 
-\textbf{Nota}: todos os algoritmos apresentados neste documento podem ser encontrados também \href{https://github.com/zambonin/ufsc-ine5451}{neste repositório}.
+\textbf{Nota}: todos os algoritmos apresentados neste documen   to podem ser encontrados também \href{https://github.com/zambonin/ufsc-ine5451}{neste repositório}.
 
 \subsection*{Questão 1}
 O processo utilizado para obter as frequências com relação à língua inglesa é listado abaixo:
@@ -54,53 +54,51 @@ O processo utilizado para obter as frequências com relação à língua inglesa
     \item Linhas 33-34: funções \textit{inline} que ordenam as estruturas de dados por suas chaves numéricas.
     \item Linha 37: habilita a entrada de múltiplos arquivos de texto para análise conjunta.
 \end{itemize}
-\begin{enumerate}[label=(\alph*)]
+\begin{enumerate}
     \item A frequência relativa do alfabeto A-Z em inglês segue abaixo:
-   \begin{center}
-        \begin{tabular}{ll}
-            \begin{minipage}{.32\linewidth}
-                \begin{tabular}{ll}
-                    \hline
-                    \textbf{e} & $\approx 12.900494344206656\%$ \\ \hline
-                    \textbf{t} & $\approx 9.228622978258158\%$ \\ \hline
-                    \textbf{a} & $\approx 8.495812955201934\%$ \\ \hline
-                    \textbf{o} & $\approx 7.534992892953012\%$ \\ \hline
-                    \textbf{i} & $\approx 7.176120980751902\%$ \\ \hline
-                    \textbf{h} & $\approx 7.16191923611903\%$ \\ \hline
-                    \textbf{n} & $\approx 6.63501392800086\%$ \\ \hline
-                    \textbf{s} & $\approx 6.014994572463682\%$ \\ \hline
-                    \textbf{r} & $\approx 5.7699836041887324\%$ \\ \hline
-                \end{tabular}
-            \end{minipage}
-            \begin{minipage}{.33\linewidth}
-                \begin{tabular}{ll}
-                    \hline
-                    \textbf{d} & $\approx 4.045562489940431\%$ \\ \hline
-                    \textbf{l} & $\approx 3.9625337394346226\%$ \\ \hline
-                    \textbf{u} & $\approx 2.7658412228484253\%$ \\ \hline
-                    \textbf{c} & $\approx 2.7387961613301724\%$ \\ \hline
-                    \textbf{m} & $\approx 2.401041625930986\%$ \\ \hline
-                    \textbf{w} & $\approx 2.2774658653863966\%$ \\ \hline
-                    \textbf{f} & $\approx 2.264293232683442\%$ \\ \hline
-                    \textbf{g} & $\approx 1.8497669473123507\%$ \\ \hline
-                    \textbf{p} & $\approx 1.7295255094206964\%$ \\ \hline
-                \end{tabular}
-            \end{minipage}
-            \begin{minipage}{.33\linewidth}
-                \begin{tabular}{ll}
-                    \hline
-                    \textbf{b} & $\approx 1.5355173283924984\%$ \\ \hline
-                    \textbf{y} & $\approx 1.3292832976368709\%$ \\ \hline
-                    \textbf{v} & $\approx 1.0720053151572956\%$ \\ \hline
-                    \textbf{k} & $\approx 0.53785505905250075\%$ \\ \hline
-                    \textbf{j} & $\approx 0.2396595862393739\%$ \\ \hline
-                    \textbf{x} & $\approx 0.15218507219631834\%$ \\ \hline
-                    \textbf{q} & $\approx 0.10402263387614184\%$ \\ \hline
-                    \textbf{z} & $\approx 0.07668942101751178\%$ \\ \hline
-                    & \\ \hline
-                \end{tabular}
-            \end{minipage}
-        \end{tabular}
+    \begin{center}
+        \begin{minipage}{.32\linewidth}
+            \begin{tabular}{ll}
+                \hline
+                \textbf{e} & $\approx 12.900494344206656\%$ \\ \hline
+                \textbf{t} & $\approx 9.228622978258158\%$ \\ \hline
+                \textbf{a} & $\approx 8.495812955201934\%$ \\ \hline
+                \textbf{o} & $\approx 7.534992892953012\%$ \\ \hline
+                \textbf{i} & $\approx 7.176120980751902\%$ \\ \hline
+                \textbf{h} & $\approx 7.16191923611903\%$ \\ \hline
+                \textbf{n} & $\approx 6.63501392800086\%$ \\ \hline
+                \textbf{s} & $\approx 6.014994572463682\%$ \\ \hline
+                \textbf{r} & $\approx 5.7699836041887324\%$ \\ \hline
+            \end{tabular}
+        \end{minipage}
+        \begin{minipage}{.33\linewidth}
+            \begin{tabular}{ll}
+                \hline
+                \textbf{d} & $\approx 4.045562489940431\%$ \\ \hline
+                \textbf{l} & $\approx 3.9625337394346226\%$ \\ \hline
+                \textbf{u} & $\approx 2.7658412228484253\%$ \\ \hline
+                \textbf{c} & $\approx 2.7387961613301724\%$ \\ \hline
+                \textbf{m} & $\approx 2.401041625930986\%$ \\ \hline
+                \textbf{w} & $\approx 2.2774658653863966\%$ \\ \hline
+                \textbf{f} & $\approx 2.264293232683442\%$ \\ \hline
+                \textbf{g} & $\approx 1.8497669473123507\%$ \\ \hline
+                \textbf{p} & $\approx 1.7295255094206964\%$ \\ \hline
+            \end{tabular}
+        \end{minipage}
+        \begin{minipage}{.33\linewidth}
+            \begin{tabular}{ll}
+                \hline
+                \textbf{b} & $\approx 1.5355173283924984\%$ \\ \hline
+                \textbf{y} & $\approx 1.3292832976368709\%$ \\ \hline
+                \textbf{v} & $\approx 1.0720053151572956\%$ \\ \hline
+                \textbf{k} & $\approx 0.53785505905250075\%$ \\ \hline
+                \textbf{j} & $\approx 0.2396595862393739\%$ \\ \hline
+                \textbf{x} & $\approx 0.15218507219631834\%$ \\ \hline
+                \textbf{q} & $\approx 0.10402263387614184\%$ \\ \hline
+                \textbf{z} & $\approx 0.07668942101751178\%$ \\ \hline
+                & \\ \hline
+            \end{tabular}
+        \end{minipage}
     \end{center}
     \item A frequência relativa de digramas na língua inglesa é apresentada abaixo, filtrando apenas os 10 resultados mais comuns. O conjunto total não será mostrado pois, além de ser demasiadamente extenso, não existe, neste arquivo, uma representação de todas as palavras presentes no vocabulário moderno da língua inglesa, utilizadas de modo contextualmente válido, impossibilitando a construção de todos os digramas válidos.
     \begin{center}
@@ -157,7 +155,7 @@ A máquina Enigma apresentada tem as seguintes características:
     \item \textit{Ringstellung} com a configuração \textbf{AAA};
     \item O texto cifrado é datado de maio de 1942.
 \end{itemize}
-    Destas informações, é possível inferir os seguintes aspectos para início da criptoanálise:
+Destas informações, é possível inferir os seguintes aspectos para início da criptoanálise:
 \begin{itemize}
     \item Não é possível aplicar um método que utilize um ataque de texto em claro conhecido (Bomba de Turing).
     \item Não é possível aplicar um método que dependa de mais de um texto cifrado (\textit{females} de Rejewski).
@@ -187,15 +185,13 @@ O algoritmo responsável por analisar o IC de cada possível texto é mostrado a
     \item Linha 46: Ordena os resultados pelo IC, para que o resultado seja facilmente distinguível.
     \item Linhas 48-50: Armazena o resultado em disco para acesso posterior e pesquisa, se necessário.
 \end{itemize}
-O resultado final foi modificado apenas para adição de espaços. O texto original foi adicionado abaixo para comparação de conteúdo, visto que a pontuação e ênfase contextual podem ser ambíguas. Após o texto decifrado, o IC apresenta um valor muito próximo ao IC da língua inglesa ($0.068$). Por conta da quantidade de caracteres no texto cifrado, nenhuma outra possibilidade de texto ultrapassou a marca de $0.043$ em relação ao IC. \\
-
-\texttt{('(FSC III II I): AS ECONOMICS IS KNOWN AS THE MISERABLE SCIENCE SOFTWARE ENGINEERING SHOULD BE KNOWN AS THE DOOMED DISCIPLINE DOOMED BECAUSE IT CANNOT EVEN APPROACH ITS GOAL SINCE ITS GOAL IS SELFCONTRADICTORY SOFTWARE ENGINEERING OF COURSE PRESENTS ITSELF AS ANOTHER WORTHY CAUSE BUT THAT IS EYEWASH IF YOU CAREFULLY READ ITS LITERATURE AND ANALYSE WHAT ITS DEVOTEES ACTUALLY DO YOU WILL DISCOVER THAT SOFTWARE ENGINEERING HAS ACCEPTED AS ITS HOW TO PROGRAM IF YOU CANNOT EDSGER DIJKSTRA', 0.06592372083555963)} \\
-
+O resultado final foi modificado apenas para adição de espaços. O texto original foi adicionado abaixo para comparação de conteúdo, visto que a pontuação e ênfase contextual podem ser ambíguas. Após o texto decifrado, o IC apresenta um valor muito próximo ao IC da língua inglesa ($0.068$). Por conta da quantidade de caracteres no texto cifrado, nenhuma outra possibilidade de texto ultrapassou a marca de $0.043$ em relação ao IC. \newline
+\\
+\textbf{\texttt{\footnotesize ('(FSC III II I): AS ECONOMICS IS KNOWN AS THE MISERABLE SCIENCE SOFTWARE ENGINEERING SHOULD BE KNOWN AS THE DOOMED DISCIPLINE DOOMED BECAUSE IT CANNOT EVEN APPROACH ITS GOAL SINCE ITS GOAL IS SELFCONTRADICTORY SOFTWARE ENGINEERING OF COURSE PRESENTS ITSELF AS ANOTHER WORTHY CAUSE BUT THAT IS EYEWASH IF YOU CAREFULLY READ ITS LITERATURE AND ANAL\-YSE WHAT ITS DEVOTEES ACTUALLY DO YOU WILL DISCOVER THAT SOFTWARE ENGINEERING HAS ACCEPTED AS ITS HOW TO PROGRAM IF YOU CANNOT EDSGER DIJKSTRA', 0.06592372083555963)}} \newline
+\\
 \textit{As economics is known as "The Miserable Science", software engineering should be known as "The Doomed Discipline", doomed because it cannot even approach its goal since its goal is self-contradictory. Software engineering, of course, presents itself as another worthy cause, but that is eyewash: if you carefully read its literature and analyse what its devotees actually do, you will discover that software engineering has accepted as its charter "How to program if you cannot.".
 \begin{flushright}Edsger W. Dijkstra\end{flushright}}
-
 Finalmente, o \textit{grundstellung} é igual a \textbf{F, S, C} e o \textit{walzenlage} é igual a \textbf{III, II, I}.
-
 \subsection*{Questão 4}
 O ataque diferencial da SPN será discutido logo abaixo. O código responsável por cifrar uma mensagem através da SPN será omitido neste documento, mas pode ser encontrado \href{https://raw.githubusercontent.com/zambonin/UFSC-INE5451/master/q4_spn.py}{aqui}. Este ataque está direcionado para uma certa subchave e \textit{input-xor} definido, para que um paralelo com \textit{Stinson} (p. 94) seja realizado.
 \lstinputlisting[language=Python]{q4_break_spn.py}

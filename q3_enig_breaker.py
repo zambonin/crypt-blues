@@ -19,18 +19,16 @@ def main(text):
         for j in rotors:
             if i == j:
                 continue
-
             for k in rotors:
                 if i == k or j == k:
                     continue
-
                 for l in string.ascii_uppercase:
                     for m in string.ascii_uppercase:
                         for n in string.ascii_uppercase:
                             deciphered = Enigma(rotors=
-                                        (Walzen(index='%s' % i, ringstellung='A', grundstellung='%s' % l),
-                                        Walzen(index='%s' % j, ringstellung='A', grundstellung='%s' % m),
-                                        Walzen(index='%s' % k, ringstellung='A', grundstellung='%s' % n))).cipher(text)
+                            (Walzen(index='%s' % i, ringstellung='A', grundstellung='%s' % l),
+                             Walzen(index='%s' % j, ringstellung='A', grundstellung='%s' % m),
+                             Walzen(index='%s' % k, ringstellung='A', grundstellung='%s' % n))).cipher(text)
                             yield ('(%s%s%s %s %s %s): %s' % (
                                 l, m, n, i, j, k,
                                 deciphered
@@ -39,10 +37,8 @@ def main(text):
 if __name__ == '__main__':
     ics = main(sys.argv[1])
 
-    # FILTER results based on function
     filtered_ics = filter(lambda v: 0.05 < v[1] <= 0.07, ics)
 
-    # SORT result by decrescent index
     sorted_ics = sorted(filtered_ics, key=lambda o: o[1], reverse=True)
 
     with open('result.out', 'w') as fp:
