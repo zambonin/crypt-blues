@@ -1,0 +1,150 @@
+\documentclass{article}
+
+\usepackage{amsthm, amsmath, color, listings, mathtools, url}
+\usepackage[utf8]{inputenc}
+\usepackage[colorlinks=true,
+            urlcolor=blue]{hyperref}
+\usepackage[a4paper,
+            left=20mm,
+            right=20mm,
+            top=20mm,
+            bottom=20mm]{geometry}
+ 
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+ 
+\lstdefinestyle{mystyle}{
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{blue},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize\ttfamily,
+    breaklines=true,
+    numbers=left
+}
+ 
+\lstset{style=mystyle}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+
+\renewcommand*\theenumi{\textbf{\alph{enumi}}}
+
+\begin{document}
+
+\begin{center}
+    \section*{INE5451 - Introdução à Criptoanálise (2015/1)}
+    \textbf{Trabalho 2, Grupo 3 \\
+    Gustavo Zambonin, Ranieri Schroeder Althoff\break}
+\newline
+\textbf{Nota}: todos os algoritmos apresentados neste documento podem ser encontrados também \href{https://github.com/zambonin/ufsc-ine5451}{neste repositório}. \break O arquivo \href{https://raw.githubusercontent.com/zambonin/UFSC-INE5451/master/T2/utils.py}{utils.py} contém algumas estruturas aritméticas utilizadas por múltiplos algoritmos, e poderá aparecer nas descrições abaixo.
+\end{center}
+
+\subsection*{Questão 1}
+\begin{enumerate}
+\item A tabela de aproximações lineares apresenta todas as tendências para cada combinação de variáveis aleatórias, com respeito à respectiva caixa-S do cifrador. Estas tendências são calculadas da seguinte forma: ($y1, y2, y3, y4$) = $\pi$($x1, x2, x3, x4$) e $\oplus^{4}_{i=1} a_{i}x_{i} \oplus b_{i}y_{i} = 0$, ou seja, se a operação $\oplus$ entre as variáveis de entrada e saída for igual à 0, um contador é incrementado. As melhores tendências são as que distam de 8, ou seja, da probabilidade usual.
+\begin{itemize}
+\lstinputlisting[language=Python]{nl.py}
+\item Nota: a caixa-S foi omitida do código. O código completo encontra-se \href{https://raw.githubusercontent.com/zambonin/UFSC-INE5451/master/T2/nl.py}{aqui}.
+\item Linhas 6-8: responsável por realizar a operação $\oplus$ sobre múltiplos bits, especializada para esta implementação, visto que o processo só é fundamentado se um bit válido ocorrer.
+\item Linhas 18-19: realiza a operação $\oplus$ entre os resultados do $\oplus$ entre as variáveis de entrada e saída com relação à cada permutação da caixa-S.
+\end{itemize}
+A tabela resultante segue abaixo.\newline
+\\
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+& \textbf{0} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} & \textbf{A} & \textbf{B} & \textbf{C} & \textbf{D} & \textbf{E} & \textbf{F} \\ \hline
+\textbf{0} & 16 & 8 & 8 & 8 & 8 & 8 & 8 & 8 & 8 & 8 & 8 & 8 & 8 & 8 & 8 & 8 \\ \hline
+\textbf{1} & 8 & 10 & 6 & 8 & 10 & 8 & 8 & 6 & 4 & 6 & 6 & 8 & 10 & 8 & 4 & 10 \\ \hline
+\textbf{2} & 8 & 10 & 8 & 10 & 6 & 8 & 6 & 8 & 6 & 8 & 10 & 4 & 4 & 6 & 8 & 10 \\ \hline
+\textbf{3} & 8 & 8 & 10 & 10 & 8 & 12 & 10 & 6 & 6 & 6 & 8 & 8 & 10 & 6 & 12 & 8 \\ \hline
+\textbf{4} & 8 & 10 & 8 & 6 & 8 & 10 & 8 & 6 & 10 & 4 & 10 & 8 & 6 & 8 & 6 & 4 \\ \hline
+\textbf{5} & 8 & 12 & 6 & 6 & 10 & 10 & 8 & 12 & 6 & 10 & 8 & 8 & 8 & 8 & 10 & 6 \\ \hline
+\textbf{6} & 8 & 8 & 12 & 8 & 10 & 10 & 6 & 10 & 8 & 8 & 8 & 12 & 6 & 6 & 6 & 10 \\ \hline
+\textbf{7} & 8 & 6 & 6 & 8 & 12 & 6 & 10 & 8 & 8 & 6 & 6 & 8 & 4 & 6 & 10 & 8 \\ \hline
+\textbf{8} & 8 & 10 & 10 & 8 & 8 & 6 & 6 & 8 & 10 & 8 & 4 & 6 & 10 & 4 & 8 & 6 \\ \hline
+\textbf{9} & 8 & 8 & 8 & 12 & 10 & 10 & 6 & 10 & 10 & 6 & 6 & 6 & 8 & 12 & 8 & 8 \\ \hline
+\textbf{A} & 8 & 12 & 10 & 10 & 6 & 6 & 12 & 8 & 8 & 8 & 6 & 10 & 6 & 10 & 8 & 8 \\ \hline
+\textbf{B} & 8 & 6 & 12 & 6 & 8 & 6 & 8 & 10 & 4 & 6 & 8 & 6 & 8 & 10 & 8 & 6 \\ \hline
+\textbf{C} & 8 & 8 & 10 & 10 & 12 & 8 & 10 & 6 & 8 & 12 & 10 & 6 & 8 & 8 & 6 & 6 \\ \hline
+\textbf{D} & 8 & 6 & 8 & 6 & 6 & 12 & 10 & 8 & 8 & 10 & 4 & 6 & 6 & 8 & 6 & 8 \\ \hline
+\textbf{E} & 8 & 6 & 6 & 12 & 6 & 8 & 8 & 10 & 6 & 8 & 8 & 10 & 8 & 6 & 6 & 4 \\ \hline
+\textbf{F} & 8 & 8 & 8 & 8 & 8 & 8 & 12 & 12 & 10 & 6 & 10 & 6 & 10 & 6 & 6 & 10 \\ \hline
+\end{tabular}
+\item A aproximação linear consiste em seguir a variável escolhida no percurso da rede de substituição-permutação. Sabendo que a variável aleatória a ser analisada é $\textbf{X}_{16} \oplus \textbf{U}^{4}_{1} \oplus \textbf{U}^{4}_{9}$, a entrada em $\textbf{S}^{1}_{4}$ é igual a $0001_{2} = 1_{10}$. Isto denota a variável $a$ em $N_{L}(a, b)$. $b$, por outro lado, pode ser escolhido de modo que auxilie na linearidade das permutações de bits. Nesta caixa-S, na linha 1, $b = 8$ dispersa menos bits do que $b = E$, portanto a tendência nesta parte do processo é de $\epsilon(1, 8) = \frac{N_{L}(1, 8)}{16} - \frac{1}{2} = -\frac{1}{4}.$ Este bit será mapeado para $\textbf{S}^{2}_{1} = 0001_{2} = 1_{10}$, e novamente $b = 8$ será escolhido, e sua tendência nesse ponto será $-\frac{1}{4}$ novamente. Em $\textbf{S}^{3}_{1}$, na linha 8 da tabela (pois sua entrada é $1000_{2}$), os candidatos de melhor tendência são $b = A$ e $b = D$, onde o primeiro ativa um número menor de caixas-S, e portanto será escolhido (ademais, estes bits, na saída da caixa-S, estão presentes na variável aleatória supracitada): $\epsilon(8, 10) = -\frac{1}{4}$. Aplicando o lema do empilhamento de Matsui: $2^{k-1} \prod_{j=1}^{k} \epsilon_{i_{j}} = 2^{3-1} \prod_{j=1}^{3} -\frac{1}{4} = -\frac{1}{16}.$
+\item A justificativa do ataque linear à SPN é semelhante ao ataque diferencial, no sentido de ambos usarem bits do texto em claro e bits antes da última caixa-S. Para tal, precisa-se de variáveis aleatórias que contenham tais bits - o que acontece neste caso. Esta aproximação incluirá três caixas-S ativas:
+\begin{itemize}
+\item $\textbf{T}_{1} \oplus \textbf{T}_{2} \oplus \textbf{T}_{3} =$
+\item $(\textbf{U}^{1}_{16} \oplus \textbf{V}^{1}_{13}) \oplus (\textbf{U}^{2}_{4} \oplus \textbf{V}^{2}_{1}) \oplus (\textbf{U}^{3}_{1} \oplus \textbf{V}^{3}_{1} \oplus \textbf{U}^{3}_{4}) =$
+\item $(\textbf{X}_{16} \oplus \textbf{K}^{1}_{16} \oplus \textbf{V}^{1}_{13}) \oplus (\textbf{V}^{1}_{13} \oplus \textbf{K}^{2}_{4} \oplus \textbf{V}^{2}_{1}) \oplus (\textbf{V}^{2}_{1} \oplus \textbf{K}^{3}_{1} \oplus \textbf{V}^{3}_{1} \oplus \textbf{V}^{3}_{3})$
+\item Excluindo os bits de chave, pois estes são fixos e não influenciarão no módulo da tendência, a variável aleatória proposta e sua tendência são confirmadas:
+\item $\textbf{X}_{16} \oplus \textbf{U}^{4}_{1} \oplus \textbf{U}^{4}_{9} = \pm \frac{1}{16}$.
+\item Os bits que poderão ser obtidos ao final do ataque são $\textbf{K}^{5}_{(1)}$ e $\textbf{K}^{5}_{(3)}$. Existem $2^{8}$ possibilidades para este conjunto de bits, com um contador atrelado a cada candidato.
+\item Por fim, um contador será mantido para cada ocorrência de $\textbf{X}_{16} \oplus \textbf{U}^{4}_{1} \oplus \textbf{U}^{4}_{9} = 0$. Como esta variável aleatória dista de $\frac{T}{2}$ por $\pm\frac{T}{16}$, o contador para esta variável se destacará no conjunto, e portanto retornará os bits corretos em parte das vezes, dependente do número de pares de texto cifrado e decifrado.
+\end{itemize}
+\item A implementação do raciocínio acima, que funciona com um $\tau$ até $1500$ textos, é discutida abaixo.
+\begin{itemize}
+\item \lstinputlisting[language=Python]{linear_spn.py}
+\item Linha 11: gera uma chave de 32 bits aleatória.
+\item Linhas 17-23: gera $2^{16}$ textos e escolhe 1500 destes aleatoriamente, cifrando-os com a chave escolhida.
+\item Linhas 31-37: lógica de contadores para cada candidato às subchaves.
+\item Linhas 42-45: filtra o contador que mais se destacou e mostra as subchaves correspondentes.
+\end{itemize} 
+\end{enumerate}
+
+\subsection*{Questão 3}
+O RSA é um cifrador baseado em criptografia com chave pública. A dificuldade de quebrá-lo está centrada no uso de números primos grandes para encriptar mensagens e a inabilidade computacional (até o presente momento) de fatorar tais números. Uma chave é composta por cinco elementos: $n$ e seus fatores primos $p$ e $q$, e $a*b \equiv 1$ (mod $\phi$($n$)). Escolhe-se, cuidadosamente, dois primos $p$ e $q$ (tem-se então $n = p*q$), $b$ tal que $mdc(b, \phi$($n$))$ = 1$, e calcula-se $a = b^{-1}$ (mod $\phi$($n$)). $n$ e $b$ são públicos, enquanto $p$, $q$ e $a$ são secretos. As funções de encriptação e decriptação, respectivamente, são as seguintes: $x^{b}$ (mod $n$) e $y^{a}$ (mod $n$) para $x$, $y \in Z_{n}$. Abaixo, segue a implementação de um decriptador RSA, dados os números públicos $n$ e $b$.
+\begin{itemize}
+\lstinputlisting[language=Python]{rsa.py}
+\item Nota: o vetor que contém o texto codificado foi omitido. O código completo encontra-se \href{https://raw.githubusercontent.com/zambonin/UFSC-INE5451/master/T2/rsa.py}{aqui}.
+\item Linha 4: o método de decodificação é pertinente a esta implentação de RSA, e por isto não foi movido para o arquivo de utilidades.
+\item Linhas 7-9: cria um vetor que contém os coeficientes da função que codifica numericamente as palavras. Ele será invertido por conta do modo que as operações matemáticas são conduzidas.
+\item Linhas 11-12: itera sobre a inversão do vetor acima, para que as letras estejam na ordem correta, e calcula a posição do número na codificação ASCII, assim retornando uma palavra legível.
+\item Linhas 17-18: implementação da função totiente de Euler ($\phi$($n$)), que usa o método $p - 1$, discutido abaixo, para descobrir os fatores de um número primo, e assim retornar $(p-1)*(q-1)$. 
+\item Linha 22: computa $a = b^{-1}$ (mod $\phi$($n$)).
+\item Linha 24: executa o processo $i^{a}$ (mod $n$), onde $i$ é cada um dos pedaços de texto codificados, com o algoritmo quadrado-e-multiplica. Depois, aplica a função de decodificação supracitada para gerar as letras correspondentes.
+\end{itemize}
+O resultado final foi modificado apenas para adição de espaços. O texto original foi adicionado abaixo para comparação de conteúdo, visto que a pontuação e ênfase contextual podem ser ambíguas.\\
+\\
+\textbf{\texttt{\footnotesize
+LAKE WOBEGON IS MOSTLY POOR SNDY SOIL AND EVERY SPRING THE EARTH HEAVES UP A NEW CROP OF ROCKS PILES OF ROCKS TEN\newline FEET HIGH IN THE CORNERS OF FIELDS PICKED BY GENERATIONS OF US MONUMENTS TO OUR INDUSTRY OUR NCESTORS CHOSE THE\newline PLACE TIRED FROM THEIR LONG JOURNEYS D FOR HVING LEFT THE MOTHERLAND BEHIND AND THIS PLACE REMINDED THEM OF THERE\newline SO THEY SETTLED HERE FORGETTING THAT THEY HAD LEFT THERE BECAUSE THE LND WASNT SO GOOD SO THE NEW LIFE TURNED OUT\newline TO BE LOT LIKE THE OLD EXCEPT THE WINTERS RE WORSEZ}} \newline
+\\
+\textit{Lake Wobegon is mostly poor sandy soil, and every spring the earth heaves up a new crop of rocks. Piles of rocks ten feet high in the corners of fields, picked by generations of us, monuments to our industry. Our ancestors chose the place, tired from their long journey, sad for having left the motherland behind, and this place reminded them of there, so they settled here, forgetting that they had left there because the land wasn't so good. So the new life turned out to be a lot like the old, except the winters are worse.}
+\begin{flushright}
+    Garrison Keillor, "Lake Wobegon Days" (Penguin Viking, Inc., 1985), p. 17
+\end{flushright}
+\subsection*{Questão 5}
+O método de fatorização de inteiros de Pollard, também conhecido como método $p -1$, é utilizado para fatorar números até um certo número de dígitos, pois sua complexidade torna-se impraticável quando fatores muito grandes tentam ser calculados. Tem como base, na aritmética modular, o Teorema de Fermat (mais especificamente a expressão $a^{p-1} \equiv 1$ (mod $p$)). A ideia do algoritmo é encontrar um fator $p - 1 \mid B!$ para algum $B$ pequeno. Utilizando Fermat, conclui-se que $2^{B!} \equiv 1$ (mod $p$), o que significa que $p \mid (2^{B!} - 1)$. Como $p \mid n$ também se aplica, pois $p$ é um fator de $n$, então por definição $p \mid mdc(2^{B!} - 1, n)$ existe, e esse segundo número será o resultado desejado. Segue abaixo uma pequena implementação do algoritmo.
+
+\begin{itemize}
+\lstinputlisting[language=Python]{pollard.py}
+\item Linha 4: inicia-se o processo com 2, pois é o primeiro fator não-trivial que pode influenciar no resultado.
+\item Linha 6: calcula iterações de $a$, até o limite $B$, que podem resultar num fator válido para o número original.
+\item Linha 9: o processo de MDC pode ser realizado uma vez a cada cálculo de $a$ ou uma vez ao final do algoritmo, não influenciando no resultado final.
+\item Linha 10: checa se $d$ está no intervalo válido. Se não existir um fator, o programa não retornará nada.
+\end{itemize}
+Ao final do processamento, tem-se como resposta o fator $\textbf{250387201}$. Dividindo o número original por este fator, tem-se uma divisão inteira com quociente $\textbf{2469135821}$.
+
+\subsection*{Questão 6}
+Outro algoritmo para fatorização de inteiros foi concebido por Dixon. Baseia-se em encontrar certas congruências do estilo $x^2 \equiv y^2$ (mod $n$), pois se $n \mid (x-y)(x+y)$, então $mdc(x-y, n)$ será um bom fator de $n$. Utilizando uma base de primos "pequenos", uma iteração é realizada de modo a achar tais congruências e, por fim, realizar o processo de máximo divisor comum sobre estas. A implementação é discutida abaixo.
+
+\begin{itemize}
+\lstinputlisting[language=Python]{dixon.py}
+\item Linha 4: define a base de fatores primos com um teste de primalidade simples.
+\item Linhas 8-9: definem o número de iterações a ser feitas (todos os números entre $\sqrt{n}$ e $n$ comparados com todos os números da base de fatores).
+\item Linhas 10-11: testa a congruência característica e armazena o par de inteiros para o processo de MDC posterior.
+\item Linhas 14-16: todos os valores são submetidos ao MDC característico, e caso um deles retorne um fator não-trivial, o processo termina.
+\end{itemize}
+Assim, o algoritmo retornou o fator $\textbf{293}$, resultado do processamento das congruências, e $\textbf{897}$, resultado da divisão do número original por seu fator descoberto. É possível que, dependendo da congruência a ser escolhida (se esta for válida), o primeiro fator a ser encontrado será diferente.
+
+\subsection*{Questão 7}
+A fatorização de grandes números inteiros não é o único processo matemático no qual cifradores são baseados. O logaritmo discreto descreve uma estrutura difícil de ser quebrada se seu elemento primitivo for cuidadosamente escolhido (dado um $\beta \in Z^{*}_{p}$, encontrar um expoente único $0 \leq a \leq p-2$ tal que $\alpha^{a} \equiv \beta$ (mod $p$)). Um algoritmo para a resolução deste logaritmo, comumente chamado de \textit{baby-step giant-step}, separa o expoente $a$ em $\alpha^{mj}$ e $\beta\alpha^{-i}$, utilizando a equação $\log_{\alpha}\beta = i * m + j$, com $m = \ceil[\big]{\sqrt{p-1}}$ e $0 \leq i, j < m$ como fundamento. Dividindo o problema, torna-se mais fácil compor o expoente $a$. A implementação da estratégia será dirimida abaixo.
+\begin{itemize}
+\lstinputlisting[language=Python]{shanks.py}
+\item Linhas 5-6: computa valores que serão usados repetidamente ($\alpha^{m}$ (mod $p$) e a inversa modular de $\alpha$).
+\item Linhas 10-11: o algoritmo busca encontrar $j$ e $i$ tal que seus respectivos pares sejam $\alpha^{mj}$ (mod $p$) e $\beta\alpha^{-i}$ (mod $p$), já que estes são iguais.
+\item Linhas 13-15: busca os elementos adjacentes às segundas coordenadas se estas forem iguais.
+\item Linha 16: resolve $\log_{\alpha}\beta = i * m + j$.
+\end{itemize}
+Por fim, o resultado de $log_{6}248388$ em $Z^{*}_{458009} = a = \textbf{232836}$. Isto pode ser verificado aplicando o número encontrado no logaritmo discreto. De fato, $6^{232836} \equiv 248388$ (mod $458009$), pois $6^{232836}$ *mod $458009$) $= 248388$.
+\end{document}
