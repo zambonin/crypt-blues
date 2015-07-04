@@ -92,6 +92,28 @@ A tabela resultante segue abaixo.\newline
 \end{itemize} 
 \end{enumerate}
 
+\subsection*{Questão 2}
+O ataque quadrado ao AES com quantidade reduzida de rodadas é baseado na ideia de uma propriedade que se mantém ao longo das rodadas do AES. Embora cada parte de uma rodada do AES, composta pelos métodos $SubBytes$, $ShiftRow$, $MixColumn$ e $AddRoundKey$ consiga espalhar o efeito com muita rapidez, a estrutura da entrada se mantém e ainda e possível achar uma relação da saída do AES com a entrada após 4 rodadas.
+
+Partindo desse princípio, o ataque segue da seguinte maneira: obtém-se textos cifrados escolhidos, onde um dos bytes possui um valor conhecido e todos os outros contém um valor igual, não necessariamente igual ao byte escolhido, de forma que o estado inicial do AES seja composto de 15 bytes iguais, mais nossa constante escolhida.
+
+Seja $z^{k}$ o $k$-ésimo bloco deste conjunto cifrado, toma-se o byte numa posição $(i, j)$ após desfazer-se a operação de $ShiftRow$ ($InvShiftRow(z^{k})$ da última rodada, "chuta-se" o valor de $k_{i,j}$ do byte nesta mesma posição em $InvShiftRow(K^{4})$ e aplica-se o inverso da operação $SubBytes$ ($InvSubBytes$) ao ou-exclusivo desses valores, ou seja, calcula-se a inversa da caixa S sobre esse ou-exclusivo.
+
+Repete-se este mesmo processo para todos os blocos cifrados, que são 256 blocos diferentes, e no fim do processo, calcula-se um ou-exclusivo em todos os resultados do chute do valor do byte da chave. Caso esta operação resulte 0, existe uma grande chance ($1 - 2^{-16}$) de que este byte seja o correto para aquela posição. Múltiplos bytes podem ser votados como corretos, neste caso passar uma nova integral, com valores diferentes nos 15 bytes iguais, reduz muito a chance do byte estar errado.
+
+Tendo os valores de todos os bytes da chave, basta reverter o escalonamento de chaves do AES para obter os bytes da chave inicial. Este passo foi omitido do algoritmo, mas é trivial, pois o escalonamento de chaves apenas copia uma parte da chave e aplica operações de ou-exclusivo.
+\begin{itemize}
+\lstinputlisting[language=Python]{aes4breaker.py}
+\item Linhas 6-12: algoritmo que gera as integrais, criando uma lista blocos contendo 1 valor que muda e 15 constantes que não mudam para cada bloco.
+\item Linhas 15-17: preparação das iterações, gerando as integrais, cifrando-as com AES4 e invertendo o efeito do último ShiftRow.
+\item Linhas 22-34: laço que itera sobre todos os bytes da chave que podem ser descobertos.
+\item Linhas 23-34: laço que itera sobre os possíveis bytes a serem "chutados".
+\item Linhas 25-27: aplica o ou-exclusivo entre o chute e os bytes do texto cifrado.
+\item Linhas 29-31: aplica o ou-exclusivo entre todos os resultados do de ous-exclusivos para verificar o balanceamento
+\item Linhas 33-34: se o resultado dos ous-exclusivos for zero, há balanceamento usando este byte de chave; adicionar à lista para posterior verificação
+\end{itemize}
+Caso mais de um byte de chave seja possível para alguma posição, é possível executar novamente o algoritmo gerando uma integral com constantes diferentes. Após filtrar as possibilidades, faz-se o inverso do escalonamento de chaves para se obter bytes da chave inicial do cifrador.
+
 \subsection*{Questão 3}
 O RSA é um cifrador baseado em criptografia com chave pública. A dificuldade de quebrá-lo está centrada no uso de números primos grandes para encriptar mensagens e a inabilidade computacional (até o presente momento) de fatorar tais números. Uma chave é composta por cinco elementos: $n$ e seus fatores primos $p$ e $q$, e $a*b \equiv 1$ (mod $\phi$($n$)). Escolhe-se, cuidadosamente, dois primos $p$ e $q$ (tem-se então $n = p*q$), $b$ tal que $mdc(b, \phi$($n$))$ = 1$, e calcula-se $a = b^{-1}$ (mod $\phi$($n$)). $n$ e $b$ são públicos, enquanto $p$, $q$ e $a$ são secretos. As funções de encriptação e decriptação, respectivamente, são as seguintes: $x^{b}$ (mod $n$) e $y^{a}$ (mod $n$) para $x$, $y \in Z_{n}$. Abaixo, segue a implementação de um decriptador RSA, dados os números públicos $n$ e $b$.
 \begin{itemize}
