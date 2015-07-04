@@ -9,6 +9,7 @@ def factor(n=256961):
         for j in base:
             if i**2 % n == j**2 % n: 
                 pairs.append([i,j])
+                # print ("%d² ≡ %d² mod %d" % (i, j, n)) 
 
     for i in pairs:
         factor = utils.gcd(i[0] - i[1], n)
