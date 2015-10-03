@@ -6,7 +6,8 @@ import sys
 
 allowed_letters = string.ascii_lowercase
 digraph_index = {}
-letter_index = {l : 0 for l in allowed_letters}
+letter_index = {l: 0 for l in allowed_letters}
+
 
 def process_text(text):
     for word in text.lower().split():
@@ -16,10 +17,11 @@ def process_text(text):
                 if dig[0] in allowed_letters and dig[1] in allowed_letters:
                     letter_index[dig[0]] += 1
                     digraph_index[dig] = digraph_index[dig] + 1 \
-                            if dig in digraph_index else 1
-                            
+                        if dig in digraph_index else 1
+
         if word[-1] in allowed_letters:
             letter_index[word[-1]] += 1
+
 
 def process_data():
     total = sum(digraph_index.values())

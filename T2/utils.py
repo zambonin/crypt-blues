@@ -3,6 +3,7 @@ def gcd(a, b):
         a, b = b, a % b
     return a
 
+
 def extended_gcd(num1, num2):
         gcd, remainder = abs(num1), abs(num2)
         x, y, old_x, old_y = 1, 1, 0, 0
@@ -12,16 +13,18 @@ def extended_gcd(num1, num2):
             old_y, y = y - quotient*old_y, old_y
         return gcd, x, y
 
+
 def inv_mod(a, mod):
     g, x, y = extended_gcd(a, mod)
     return int(x % mod)
 
+
 def is_prime(x):
-    primes = []
     for i in range(2, x):
         if x % i == 0:
             return False
     return True
+
 
 def quad_mult(x, b, n):
     z = 1

@@ -1,5 +1,6 @@
 import utils
 
+
 def shanks_algorithm(alpha=6, beta=248388, p=458009):
     m = int(p ** .5) + 1
     y1 = alpha**m % p

@@ -4,7 +4,8 @@ import string
 import sys
 from enigma import Enigma, Walzen
 
-rotors=('I', 'II', 'III', 'IV', 'V')
+rotors = ('I', 'II', 'III', 'IV', 'V')
+
 
 def index_of_coincidence(text):
     def freq(i):
@@ -13,6 +14,7 @@ def index_of_coincidence(text):
 
     l = len(text)
     return sum(map(freq, string.ascii_uppercase)) / (l * (l - 1))
+
 
 def main(text):
     for i in rotors:
@@ -25,10 +27,16 @@ def main(text):
                 for l in string.ascii_uppercase:
                     for m in string.ascii_uppercase:
                         for n in string.ascii_uppercase:
-                            deciphered = Enigma(rotors=
-                            (Walzen(index='%s' % i, ringstellung='A', grundstellung='%s' % l),
-                             Walzen(index='%s' % j, ringstellung='A', grundstellung='%s' % m),
-                             Walzen(index='%s' % k, ringstellung='A', grundstellung='%s' % n))).cipher(text)
+                            deciphered = Enigma(rotors=(Walzen(index='%s' % i,
+                                                ringstellung='A',
+                                                grundstellung='%s' % l),
+                                                        Walzen(index='%s' % j,
+                                                ringstellung='A',
+                                                grundstellung='%s' % m),
+                                                        Walzen(index='%s' % k,
+                                                ringstellung='A',
+                                                grundstellung='%s' % n))
+                                                ).cipher(text)
                             yield ('(%s%s%s %s %s %s): %s' % (
                                 l, m, n, i, j, k,
                                 deciphered

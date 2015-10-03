@@ -5,7 +5,8 @@ import sys
 
 alphabet = string.ascii_uppercase
 desloc = alphabet[1:] + alphabet[:1]
-shift_up = {alphabet[i]:desloc[i] for i in range(len(alphabet))}
+shift_up = {alphabet[i]: desloc[i] for i in range(len(alphabet))}
+
 
 class Steckerbrett:
     def __init__(self, *args):
@@ -23,6 +24,7 @@ class Steckerbrett:
             return self.map[letter]
         return letter
 
+
 class Umkehrwalze:
     def __init__(self, wiring):
         assert isinstance(wiring, str)
@@ -30,6 +32,7 @@ class Umkehrwalze:
 
     def reflect(self, letter):
         return self.wiring[alphabet.index(letter)]
+
 
 class Walzen:
     def __init__(self, index, grundstellung, ringstellung):
@@ -73,6 +76,7 @@ class Walzen:
         for i in range(steps):
             char = permutation[char]
         return char
+
 
 class Enigma:
     def __init__(self, rotors, plugboard=None):
