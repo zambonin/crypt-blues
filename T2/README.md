@@ -1,0 +1,22 @@
+`dixon.py` is an integer factorization method based on the x² ≡ y² (mod N)
+congruency, where x must not be congruent to ±y (mod N).
+
+`linear_spn.py` is a simple linear attack for a SPN.
+
+`nl.py` generates the linear approximation table for all the biased variables
+going through a certain S-box.
+
+`pollard.py`, or "p - 1" algorithm, is a much simpler integer factorization
+method based on Fermat's little theorem.
+
+`rsa.py` is a very basic but fully functional implementation of a RSA
+encoder/decoder with fixed settings.
+
+`shanks.py` is an algorithm used for solving discrete logarithms through modular
+arithmetics.
+
+`utils.py` contains various easier algorithms for general use, such as the
+Euclidean algorithms (normal and extended), a primality test, finding the
+modular inverse of a number etc.
+
+They are **not** guaranteed to be fast.
