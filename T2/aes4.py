@@ -25,6 +25,7 @@ sbox = (
     0x8c, 0xa1, 0x89, 0x0d, 0xbf, 0xe6, 0x42, 0x68, 0x41, 0x99, 0x2d, 0x0f,
     0xb0, 0x54, 0xbb, 0x16)
 
+
 def chunks(text, width=16):
     orig = text[:]
     missing = 16 - (len(orig) % 16)
@@ -34,8 +35,10 @@ def chunks(text, width=16):
         yield orig[i:i + width]
         i += width
 
+
 def rotate(arr, n):
     return arr[n:] + arr[:n]
+
 
 def sub_bytes(text):
     ret = []
@@ -43,11 +46,13 @@ def sub_bytes(text):
         ret.append(sbox[byte])
     return ret
 
+
 def inv_sub_bytes(text):
     ret = []
     for byte in text:
         ret.append(sbox.index(byte))
     return ret
+
 
 def shift_row(text):
     ret = bytearray(text[:])
@@ -56,12 +61,14 @@ def shift_row(text):
     ret[12:16] = rotate(text[12:16], 3)
     return ret
 
+
 def inv_shift_row(text):
     ret = bytearray(text[:])
     ret[4:8] = rotate(text[4:8], 3)
     ret[8:12] = rotate(text[8:12], 2)
     ret[12:16] = rotate(text[12:16], 1)
     return ret
+
 
 def mix_column(text):
     def galois_mult(a, b):
@@ -91,6 +98,7 @@ def mix_column(text):
 
     return bytearray(ret)
 
+
 def add_round_key(text, key):
     ret = []
     for i, byte in enumerate(text):
@@ -103,9 +111,9 @@ def schedule_core(t, rcon_iter):
     for byte in word:
         ret.append(sbox[byte])
 
-    #ret[0] ^= rcon[rcon_iter]
     ret[0] ^= pow(2, rcon_iter - 1, 256)
     return ret
+
 
 def expand_key(key):
     # expanded key and current length through algorithm
@@ -126,6 +134,7 @@ def expand_key(key):
 
     return expanded
 
+
 def AES128(text, key, rounds):
     if not isinstance(text, bytearray):
         text = bytearray(text)
@@ -143,7 +152,8 @@ def AES128(text, key, rounds):
             chunk = add_round_key(chunk, expanded_key[key_i:key_i + 16])
 
         chunk = shift_row(sub_bytes(chunk))
-        chunk = add_round_key(chunk, expanded_key[rounds * 16:rounds * 16 + 16])
+        chunk = add_round_key(chunk,
+                              expanded_key[rounds * 16:rounds * 16 + 16])
         cipher.extend(chunk)
 
     return cipher
