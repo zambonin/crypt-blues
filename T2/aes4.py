@@ -1,7 +1,4 @@
-import itertools
-from utils import gcd, poly_mul
-
-
+from utils import gcd
 
 
 sbox = (
@@ -69,7 +66,7 @@ def inv_shift_row(text):
 def mix_column(text):
     def galois_mult(a, b):
         p, msb_set = 0, 0
-        for i in range(8):
+        for _ in range(8):
             if b & 1:
                 p = p ^ a
             msb_set = a & 0x80
@@ -83,13 +80,13 @@ def mix_column(text):
 
     ret = []
     for i in range(0, len(text), 4):
-        ret.append(gm(text[i], 2) ^ gm(text[i + 1], 3) ^ \
+        ret.append(gm(text[i], 2) ^ gm(text[i + 1], 3) ^
                    text[i + 2] ^ text[i + 3])
-        ret.append(text[i] ^ gm(text[i + 1], 2) ^ \
+        ret.append(text[i] ^ gm(text[i + 1], 2) ^
                    gm(text[i + 2], 3) ^ text[i + 3])
-        ret.append(text[i] ^ text[i + 1] ^ \
+        ret.append(text[i] ^ text[i + 1] ^
                    gm(text[i + 2], 2) ^ gm(text[i + 3], 3))
-        ret.append(gm(text[i], 3) ^ text[i + 1] ^ \
+        ret.append(gm(text[i], 3) ^ text[i + 1] ^
                    text[i + 2] ^ gm(text[i + 3], 2))
 
     return bytearray(ret)

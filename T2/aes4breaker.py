@@ -1,6 +1,4 @@
 import aes4
-import random
-import string
 
 
 def gen_integral(constant):
