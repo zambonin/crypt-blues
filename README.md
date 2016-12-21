@@ -1,1 +1,0 @@
-Information about each assignment can be found inside the respective folder.

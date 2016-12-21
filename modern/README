@@ -12,11 +12,13 @@ method based on Fermat's little theorem.
 `rsa.py` is a very basic but fully functional implementation of a RSA
 encoder/decoder with fixed settings.
 
-`shanks.py` is an algorithm used for solving discrete logarithms through modular
-arithmetics.
+`shanks.py` is an algorithm used for solving discrete logarithms through
+modular arithmetics.
 
 `utils.py` contains various easier algorithms for general use, such as the
 Euclidean algorithms (normal and extended), a primality test, finding the
 modular inverse of a number etc.
 
-They are **not** guaranteed to be fast.
+They are not guaranteed to be fast.
+
+Original assignment: 52f1a53f65fb44a791cadb719cfeac6947cff1be

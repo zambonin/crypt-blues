@@ -1,0 +1,421 @@
+\documentclass{article}
+
+\usepackage[brazil]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[a4paper, margin=2cm]{geometry}
+\usepackage[colorlinks, urlcolor=blue, citecolor=red]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage{amsthm, amsmath, array, color, listings}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{blue},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize\ttfamily,
+    breaklines=true,
+    numbers=left,
+    showstringspaces=false
+}
+
+\lstset{style=mystyle}
+
+\renewcommand*\theenumi{\textbf{\alph{enumi}}}
+
+\begin{document}
+
+\begin{center}
+    \section*{INE5451 - Introdução à Criptoanálise (2015/1)}
+    \textbf{
+        Trabalho 1, Grupo 3, Modelo 6 \\
+        Gustavo Zambonin, Ranieri Schroeder Althoff
+    }
+\end{center}
+
+\textbf{Nota}: todos os algoritmos apresentados neste documento podem ser
+encontrados também \href{https://github.com/zambonin/ufsc-ine5451}{neste
+repositório}.
+
+\subsection*{Questão 1}
+
+O processo utilizado para obter as frequências com relação à língua inglesa é
+listado abaixo:
+
+\begin{itemize}
+
+    \item Lembrando: os cálculos realizados mostram que, desde que exista uma
+        boa quantidade de textos (um livro já é o suficiente para construção
+        do vocabulário diversificado), as frequências sempre respeitarão um
+        intervalo intrínseco. Os valores descritos representam apenas uma
+        aproximação das frequências da língua inglesa moderna. Comparações
+        podem ser feitas através de dados presentes
+        \href{http://en.wikipedia.org/wiki/Letter_frequency#Relative_frequencies_of_letters_in_the_English_language}{aqui},
+        assim como resultados de outros arquivos analisados por este código.
+
+    \item Obteve-se uma edição completa do livro
+        \textit{\href{http://www.gutenberg.org/cache/epub/135/pg135.txt}{Les Misérables}},
+        traduzida para inglês, disponível gratuitamente através do
+        \textit{\href{http://www.gutenberg.org}{Project Gutenberg}}.
+
+    \item O código utilizado para processar o arquivo é comentado logo abaixo.
+
+    \lstinputlisting[language=Python]{let_freq.py}
+
+    \item Linha 13: garante que todas as letras serão convertidas para suas
+        versões minúsculas na lista de palavras.
+
+    \item Linha 15: cria todos os digramas possíveis para uma palavra de
+        tamanho válido.
+
+    \item Linha 18: adiciona na contagem de letras a primeira letra de cada
+        digrama, desconsiderando repetições.
+
+    \item Linhas 19-20: trata de adicionar um digrama novo ou incrementar a
+        contagem de um existente.
+
+    \item Linhas 22-23: a última letra de cada palavra é finalmente tratada,
+        visto que esta nunca será a primeira letra de um digrama, e portanto,
+        nunca seria contada.
+
+    \item Linhas 35-36: funções \textit{inline} que ordenam as estruturas de
+        dados por suas chaves numéricas.
+
+    \item Linha 41: habilita a entrada de múltiplos arquivos de texto para
+        análise conjunta.
+
+\end{itemize}
+
+\begin{enumerate}
+
+    \item A frequência relativa do alfabeto A-Z em inglês segue abaixo:
+
+    \begin{center}
+        \begin{minipage}{.32\linewidth}
+            \begin{tabular}{>{\bfseries}ll}
+                \hline
+                e & $\approx 12.900494344206656\%$     \\ \hline
+                t & $\approx 9.228622978258158\%$      \\ \hline
+                a & $\approx 8.495812955201934\%$      \\ \hline
+                o & $\approx 7.534992892953012\%$      \\ \hline
+                i & $\approx 7.176120980751902\%$      \\ \hline
+                h & $\approx 7.16191923611903\%$       \\ \hline
+                n & $\approx 6.63501392800086\%$       \\ \hline
+                s & $\approx 6.014994572463682\%$      \\ \hline
+                r & $\approx 5.7699836041887324\%$     \\ \hline
+            \end{tabular}
+        \end{minipage}
+        \begin{minipage}{.33\linewidth}
+            \begin{tabular}{>{\bfseries}ll}
+                \hline
+                d & $\approx 4.045562489940431\%$      \\ \hline
+                l & $\approx 3.9625337394346226\%$     \\ \hline
+                u & $\approx 2.7658412228484253\%$     \\ \hline
+                c & $\approx 2.7387961613301724\%$     \\ \hline
+                m & $\approx 2.401041625930986\%$      \\ \hline
+                w & $\approx 2.2774658653863966\%$     \\ \hline
+                f & $\approx 2.264293232683442\%$      \\ \hline
+                g & $\approx 1.8497669473123507\%$     \\ \hline
+                p & $\approx 1.7295255094206964\%$     \\ \hline
+            \end{tabular}
+        \end{minipage}
+        \begin{minipage}{.33\linewidth}
+            \begin{tabular}{>{\bfseries}ll}
+                \hline
+                b & $\approx 1.5355173283924984\%$     \\ \hline
+                y & $\approx 1.3292832976368709\%$     \\ \hline
+                v & $\approx 1.0720053151572956\%$     \\ \hline
+                k & $\approx 0.53785505905250075\%$    \\ \hline
+                j & $\approx 0.2396595862393739\%$     \\ \hline
+                x & $\approx 0.15218507219631834\%$    \\ \hline
+                q & $\approx 0.10402263387614184\%$    \\ \hline
+                z & $\approx 0.07668942101751178\%$    \\ \hline
+                  &                                    \\ \hline
+            \end{tabular}
+        \end{minipage}
+    \end{center}
+
+    \item A frequência relativa de digramas na língua inglesa é apresentada
+        abaixo, filtrando apenas os 10 resultados mais comuns. O conjunto
+        total não será mostrado pois, além de ser demasiadamente extenso, não
+        existe, neste arquivo, uma representação de todas as palavras
+        presentes no vocabulário moderno da língua inglesa, utilizadas de modo
+        contextualmente válido, impossibilitando a construção de todos os
+        digramas válidos.
+
+    \begin{center}
+        \begin{tabular}{>{\bfseries}ll}
+            \hline
+            th & $\approx 4.276658660240072\%$     \\ \hline
+            he & $\approx 4.0442594323565895\%$    \\ \hline
+            in & $\approx 2.2615934381157863\%$    \\ \hline
+            er & $\approx 2.111202678574571\%$     \\ \hline
+            an & $\approx 1.9470851796970966\%$    \\ \hline
+            re & $\approx 1.8199745678214054\%$    \\ \hline
+            ed & $\approx 1.4616211932810376\%$    \\ \hline
+            on & $\approx 1.4461346155683348\%$    \\ \hline
+            ha & $\approx 1.4253685227263014\%$    \\ \hline
+            at & $\approx 1.386953765023363\%$     \\ \hline
+        \end{tabular}
+    \end{center}
+
+\end{enumerate}
+
+\subsection*{Questão 2}
+
+\begin{itemize}
+
+    \item Seja $y = DES(c, K)$ a função que codifica o texto $c$ com a chave
+        $K$. $c$, por sua vez, será dividido em duas metades: $L_i$, a parte
+        esquerda, e $R_i$, a parte direita, para cada rodada $i$. Portanto,
+        existe uma função $DES(L_iR_i, K)$ que caracteriza uma rodada da rede
+        de Feistel.
+
+    \item Hipótese: $DES(L_iR_i, K)$ é complemento de $DES(\overline{L_iR_i},
+        \overline{K})$ e vice-versa.
+
+    \item Em $DES(L_iR_i, K)$:
+
+    \begin{itemize}
+
+        \item $L_{i+1} = R_i$
+
+        \item $R_{i+1} = L_i \oplus f(R_i,K_i)$
+
+    \end{itemize}
+
+    \item Em $DES(\overline{L_iR_i}, \overline{K})$:
+
+    \begin{itemize}
+
+        \item $\overline{L_{i+1}} = \overline{R_i}$
+
+        \item $\overline{R_{i+1}}
+            = \overline{L_i} \oplus f(\overline{R_i},\overline{K_i})$
+
+        \item A função ${f(R_i,K_i)}$ combina os bits de $R_i$ e $K_i$
+            utilizando o operador lógico $\oplus$. Como a operação de $\oplus$
+            é comutativa e associativa, ${f(R_i,K_i)}
+            = f(\overline{R_i},\overline{K_i})$. (É importante lembrar que a
+            expansão de bits em $R_i$ não afeta seu complemento pois apenas
+            duplica bits e troca-os de lugar.)
+
+        \item Portanto, segue que $\overline{R_{i+1}}
+            = \overline{L_i} \oplus f(R_i,K_i)$.
+
+        \item Porém, deseja-se obter $\overline{R_{i+1}}
+            = \overline{{L_i} \oplus f(R_i,K_i)}$ a partir dos resultados
+            acima. Isso pode ser mostrado através da tabela verdade entre os
+            termos:
+
+        \begin{center}
+            \begin{tabular}{c|c|c|c}
+             $\overline{L_i}$
+                & ${f(R_i,K_i)}$
+                & $\overline{{L_i} \oplus f(R_i,K_i)}$
+                & $\overline{L_i} \oplus f(R_i,K_i)$ \\
+             0 & 0 & 1 & 1 \\
+             0 & 1 & 0 & 0 \\
+             1 & 0 & 0 & 0 \\
+             1 & 1 & 1 & 1 \\
+            \end{tabular}
+        \end{center}
+
+    \end{itemize}
+
+    \item Todas as operações que compõem as funções $DES(L_iR_i, K)$ e
+        $DES(\overline{L_iR_i}, \overline{K})$ foram provadas complementos
+        mútuos de acordo com as regras impostas, portanto a hipótese é
+        verdadeira.
+
+    \item Por fim, por indução fraca, prova-se que o complemento cifrado
+        funciona em todas as rodadas do DES, de número arbitrário, usando o
+        procedimento acima. \\ \qed
+
+\end{itemize}
+
+\subsection*{Questão 3}
+
+A máquina Enigma apresentada tem as seguintes características:
+
+\begin{itemize}
+    \item \textit{Steckerbrett} sem cabos conectados;
+
+    \item \textit{Ringstellung} com a configuração \textbf{AAA};
+
+    \item O texto cifrado é datado de maio de 1942.
+\end{itemize}
+
+Destas informações, é possível inferir os seguintes aspectos para início da
+criptoanálise:
+
+\begin{itemize}
+
+    \item Não é possível aplicar um método que utilize um ataque de texto em
+        claro conhecido (Bomba de Turing).
+
+    \item Não é possível aplicar um método que dependa de mais de um texto
+        cifrado (\textit{females} de Zygalski).
+
+    \item Não é possível aplicar um método que aproveite da repetição da chave
+        secundária, já que isto não acontecia mais em 1942 (folhas perfuradas
+        de Zygalski, método das características).
+
+    \item Existem cinco modelos de rotor (\textit{walzen} I, II, III, IV e V,
+        presentes nas Enigma I e M3), visto que não se foi discutido em
+        profundidade o funcionamento dos rotores de \textit{notch} duplo
+        utilizados pela Marinha alemã.
+
+    \item Portanto, o número de testes para descobrir a ordem e escolha dos
+        rotores (\textit{walzenlage}) é $\binom{5}{3} = 60$.
+
+    \item Ademais, deseja-se descobrir também o \textit{grundstellung}
+        (posição em que os rotores foram encaixados inicialmente). Existem
+        $26^3$ possibilidades, visto que todos os rotores podem ser encaixados
+        com todas as letras apontando para a janela da carcaça da máquina.
+
+    \item Logo, o número de possibilidades é igual a
+        $60 \times 26^3 = \textbf{1054560}$.
+
+    \item O texto cifrado fornecido tem cerca de 400 caracteres. De acordo com
+        \cite{enigmaIC}, existe uma probabilidade muito baixa de que o texto
+        com o maior IC não seja o correto para este número de caracteres. Deste
+        modo, essa estratégia foi escolhida. É válido comentar que não se
+        obteve sucesso em construir um método não-trivial caso existissem
+        múltiplos textos de tamanho pequeno cifrados com diversas chaves.
+
+\end{itemize}
+
+O algoritmo que simula a Enigma é apresentado abaixo:
+
+\lstinputlisting[language=Python]{enigma.py}
+
+\begin{itemize}
+
+    \item Linhas 6-8: Definição do deslocamento em relação ao alfabeto na sua
+        ordem normal.
+
+    \item Linhas 11-25: Classe que define a \textit{plugboard}, não utilizada
+        neste programa, que contém apenas o método de troca de letras.
+
+    \item Linhas 28-34: Classe que define um refletor e sua permutação simples
+        de acordo com a definição.
+
+    \item Linhas 37-78: Classe que define um rotor, levando em conta seu
+        \textit{ringstellung} e \textit{grundstellung}, além do seu nome, para
+        que sejam atribuídas suas características intrínsecas. O método
+        \textit{wire} constrói as permutações de cada rotor. O método
+        \textit{move} guia as letras ao passo dos rotores.
+
+    \item Linhas 81-146: A classe de nível mais alto, que define a Enigma, sua
+        composição e seu propósito, o método \textit{cipher}, que implementa
+        matematicamente a lógica de movimentação de rotores.
+
+    \item Linhas 148-156: Uma instância da máquina com os rotores certos para
+        a mensagem cifrada (mais abaixo) é criada, que consegue cifrar
+        qualquer texto enviado por linha de comando com estas configurações.
+
+\end{itemize}
+
+O algoritmo responsável por analisar o IC de cada possível texto é mostrado
+abaixo:
+
+\lstinputlisting[language=Python]{enigma_breaker.py}
+
+\begin{itemize}
+
+    \item Linhas 14-20: calcula
+        $IC = \sum_{i=A}^Z \frac{f_i \times (f_i - 1)}{n \times (n - 1)}$ tal
+        como descrito por Smart \cite[p. 73]{Smart:2004:CI:1206247}.
+
+    \item Linhas 31-32: Armazena o texto em um gerador, que será tratado para
+        os resultados desejados.
+
+    \item Linha 39: Filtra o conjunto de ICs. Por precaução, a amplitude do
+        intervalo continua sendo alta.
+
+    \item Linha 40: Ordena os resultados pelo IC, para que o resultado seja
+        facilmente distinguível.
+
+    \item Linhas 42-44: Armazena o resultado em disco para acesso posterior e
+        pesquisa, se necessário.
+
+\end{itemize}
+
+O resultado final foi modificado apenas para adição de espaços. O texto
+original foi adicionado abaixo para comparação de conteúdo, visto que a
+pontuação e ênfase contextual podem ser ambíguas. Após o texto decifrado, o IC
+apresenta um valor muito próximo ao IC da língua inglesa ($0.068$). Por conta
+da quantidade de caracteres no texto cifrado, nenhuma outra possibilidade de
+texto ultrapassou a marca de $0.043$ em relação ao IC.
+
+\begin{verbatim}
+('(FSC III II I): AS ECONOMICS IS KNOWN AS THE MISERABLE SCIENCE SOFTWARE
+ENGINEERING SHOULD BE KNOWN AS THE DOOMED DISCIPLINE DOOMED BECAUSE IT CANNOT
+EVEN APPROACH ITS GOAL SINCE ITS GOAL IS SELFCONTRADICTORY SOFTWARE ENGINEERING
+OF COURSE PRESENTS ITSELF AS ANOTHER WORTHY CAUSE BUT THAT IS EYEWASH IF YOU
+CAREFULLY READ ITS LITERATURE AND ANALYSE WHAT ITS DEVOTEES ACTUALLY DO YOU
+WILL DISCOVER THAT SOFTWARE ENGINEERING HAS ACCEPTED AS ITS HOW TO PROGRAM IF
+YOU CANNOT EDSGER DIJKSTRA', 0.06592372083555963)
+\end{verbatim}
+
+\textit{As economics is known as "The Miserable Science", software engineering
+should be known as "The Doomed Discipline", doomed because it cannot even
+approach its goal since its goal is self-contradictory. Software engineering,
+of course, presents itself as another worthy cause, but that is eyewash: if
+you carefully read its literature and analyse what its devotees actually do,
+you will discover that software engineering has accepted as its charter "How
+to program if you cannot.".} \cite{dijkstra1989cruelty} \vspace{2mm}
+
+Finalmente, o \textit{grundstellung} é igual a \textbf{F, S, C} e o
+\textit{walzenlage} é igual a \textbf{III, II, I}.
+
+\subsection*{Questão 4}
+
+O ataque diferencial da SPN será discutido logo abaixo. O código responsável
+por cifrar uma mensagem através da SPN será omitido neste documento, mas pode
+ser encontrado \href{https://github.com/zambonin/UFSC-INE5451/blob/master/classical/spn.py}{aqui}.
+Este ataque está direcionado para uma certa subchave e \textit{input-xor}
+definido, para que um paralelo com Stinson
+\cite[p. 94]{Stinson:2002:CTP:515609} seja realizado.
+
+\lstinputlisting[language=Python]{spn_breaker.py}
+
+\begin{itemize}
+
+    \item Linhas 22-39: Cria todas as quádruplas de texto em claro, e cifrado,
+        disponíveis sendo um \textit{input-xor} fixo. Após o procedimento, 200
+        instâncias aleatórias, sem repetição, são escolhidas e repassadas ao
+        próximo método. Relembrando: a quádrupla consiste de um $x$ e um $x^*$
+        amarrados por um \textit{input-xor}, e seus resultados $y$ e $y^*$ após
+        serem codificados pela SPN.
+
+    \item Linhas 42-43: Declaração de uma operação $\oplus$ \textit{multibit}
+        para praticidade nas iterações do ataque diferencial.
+
+    \item Linhas 46-75: O método principal consiste da construção de todas as
+        possibilidades de subchave para que a contagem seja realizada, e da
+        lógica de ataque probabilístico. Após o filtro de pares inúteis, os
+        bits $v'$ são manipulados de modo que passam pela permutação inversa
+        da caixa-S e, se forem iguais aos resultados desejados, contribuem
+        para um contador de subchave correta.
+
+    \item Linha 78: Como este caso é fixo, porém probabilístico, o algoritmo
+        não mostrará sucesso em todas as situações.
+
+\end{itemize}
+
+Entretanto, com esta implementação, não foi possível concluir que
+$T = c \times e^{-1}$, onde $e \approx 38$ e $50 < T < 100$. A quantidade
+observada foi um pouco maior -- cerca de 200 quádruplas foram necessárias para
+obtenção da subchave em 80\% das vezes. Com $T = 100$, inferiu-se que em menos
+de 50\% das vezes isso acontece.
+
+\bibliography{ine5451_t1}
+\bibliographystyle{plain}
+
+\end{document}

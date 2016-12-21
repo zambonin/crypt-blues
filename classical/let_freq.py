@@ -1,10 +1,10 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
-import pprint
-import string
-import sys
+from pprint import pprint
+from sys import argv
 
-allowed_letters = string.ascii_lowercase
+allowed_letters = list(map(chr, range(97, 123)))
 digraph_index = {}
 letter_index = {l: 0 for l in allowed_letters}
 
@@ -35,10 +35,13 @@ def process_data():
     return sorted(letter_index.items(), key=lambda o: o[1], reverse=True), \
         sorted(digraph_index.items(), key=lambda o: o[1], reverse=True)[:10]
 
+
 if __name__ == '__main__':
-    for arg in sys.argv[1:]:
+
+    for arg in argv[1:]:
         with open(arg) as raw:
             for line in raw:
                 process_text(line)
 
-    pprint.pprint(process_data())
+    if len(argv) > 1:
+        pprint(process_data())

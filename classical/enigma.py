@@ -1,9 +1,9 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
-import string
-import sys
+from sys import argv
 
-alphabet = string.ascii_uppercase
+alphabet = list(map(chr, range(65, 91)))
 desloc = alphabet[1:] + alphabet[:1]
 shift_up = {alphabet[i]: desloc[i] for i in range(len(alphabet))}
 
@@ -108,7 +108,7 @@ class Enigma:
         r3 = self.rotors[2].ringstellung
 
         m1 = (n1 - p1) % 26
-        m2 = m1 + 26*((n2 - p2 - 1) % 26) + 1
+        m2 = m1 + 26 * ((n2 - p2 - 1) % 26) + 1
 
         i1 = p1 - r1 + 1
 
@@ -145,10 +145,12 @@ class Enigma:
 
         return ciphered
 
+
 if __name__ == '__main__':
     # INSERT FROM RIGHT TO LEFT LIKE NORMAL ENIGMA
-    rotors = (Walzen(index='I',   grundstellung='C', ringstellung='A'),
-              Walzen(index='II',  grundstellung='S', ringstellung='A'),
+    rotors = (Walzen(index='I', grundstellung='C', ringstellung='A'),
+              Walzen(index='II', grundstellung='S', ringstellung='A'),
               Walzen(index='III', grundstellung='F', ringstellung='A'))
 
-    print(Enigma(rotors=rotors).cipher(sys.argv[1]))
+    if len(argv) == 2:
+        print(Enigma(rotors=rotors).cipher(argv[1]))

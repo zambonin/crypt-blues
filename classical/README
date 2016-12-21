@@ -1,0 +1,24 @@
+`let_freq.py` will open any number of files given through arguments and print
+the sorted distribution of letter and digram frequencies.
+
+    python let_freq.py foo.in bar.in
+
+A free copy of Victor Hugo's Les Miserábles is included for testing purposes.
+
+`enigma.py` is a simple Enigma M3 implementation that doesn't consider a
+Steckerbrett for debugging purposes. It's also lacking different component
+models such as rotors and reflectors. `enigma_breaker.py` will break a
+ciphered text that's long enough through a index of coincidence test.
+
+    python enigma.py FOOBARTEXTTOENCODE
+
+`spn.py` is a simple substitution-permutation network implementation that will
+encode any given 16-bit text with a 32-bit key. `spn_breaker.py` is a
+probabilistic differential attack that will try to find, through differential
+trails, the right subkey for the given information. It's a functional
+representation of the differential attack explained on Douglas Stinson's
+Cryptography: Theory and Practice, 2nd edition, p. 94.
+
+They are **not** guaranteed to be fast.
+
+Original assignment: 1ba80d5060b1fdc4d923e64733c5a50819dccd92

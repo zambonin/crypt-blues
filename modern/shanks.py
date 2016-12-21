@@ -1,10 +1,13 @@
-import utils
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+from utils import inv_mod
 
 
 def shanks_algorithm(alpha=6, beta=248388, p=458009):
-    m = int(p ** .5) + 1
+    m = int(p**.5) + 1
     y1 = alpha**m % p
-    y2 = utils.inv_mod(alpha, p)
+    y2 = inv_mod(alpha, p)
     frst_list, scnd_list = [], []
 
     for i in range(m):
@@ -14,4 +17,4 @@ def shanks_algorithm(alpha=6, beta=248388, p=458009):
     for i in frst_list:
         for j in scnd_list:
             if i[1] == j[1]:
-                return m*i[0] + j[0]
+                return m * i[0] + j[0]
