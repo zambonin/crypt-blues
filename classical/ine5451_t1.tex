@@ -1,45 +1,19 @@
-\documentclass{article}
+\documentclass{../sftex/sftex}
 
-\usepackage[brazil]{babel}
-\usepackage[T1]{fontenc}
-\usepackage[a4paper, margin=2cm]{geometry}
-\usepackage[colorlinks, urlcolor=blue, citecolor=red]{hyperref}
-\usepackage[utf8]{inputenc}
-\usepackage{amsthm, amsmath, array, color, listings}
+\usepackage{amsthm, amsmath, array}
 
-\definecolor{codegreen}{rgb}{0,0.6,0}
-\definecolor{codegray}{rgb}{0.5,0.5,0.5}
-\definecolor{codepurple}{rgb}{0.58,0,0.82}
-\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
-
-\lstdefinestyle{mystyle}{
-    commentstyle=\color{codegreen},
-    keywordstyle=\color{blue},
-    numberstyle=\tiny\color{codegray},
-    stringstyle=\color{codepurple},
-    basicstyle=\footnotesize\ttfamily,
-    breaklines=true,
-    numbers=left,
-    showstringspaces=false
-}
-
-\lstset{style=mystyle}
+\title{Criptografia clássica \\ \small{Trabalho 1, Grupo 3, Modelo 6}}
+\author{Gustavo Zambonin, Ranieri Schroeder Althoff}
+\email{\{gustavo.zambonin,ranieri.althoff\}@grad.ufsc.br}
+\src{https://github.com/zambonin/ufsc-ine5451}
+\uniclass{Introdução à Criptoanálise}
+\classcode{UFSC-INE5451}
 
 \renewcommand*\theenumi{\textbf{\alph{enumi}}}
 
 \begin{document}
 
-\begin{center}
-    \section*{INE5451 - Introdução à Criptoanálise (2015/1)}
-    \textbf{
-        Trabalho 1, Grupo 3, Modelo 6 \\
-        Gustavo Zambonin, Ranieri Schroeder Althoff
-    }
-\end{center}
-
-\textbf{Nota}: todos os algoritmos apresentados neste documento podem ser
-encontrados também \href{https://github.com/zambonin/ufsc-ine5451}{neste
-repositório}.
+\maketitle
 
 \subsection*{Questão 1}
 
@@ -75,14 +49,14 @@ listado abaixo:
     \item Linha 18: adiciona na contagem de letras a primeira letra de cada
         digrama, desconsiderando repetições.
 
-    \item Linhas 19-20: trata de adicionar um digrama novo ou incrementar a
+    \item Linhas 19--20: trata de adicionar um digrama novo ou incrementar a
         contagem de um existente.
 
-    \item Linhas 22-23: a última letra de cada palavra é finalmente tratada,
+    \item Linhas 22--23: a última letra de cada palavra é finalmente tratada,
         visto que esta nunca será a primeira letra de um digrama, e portanto,
         nunca seria contada.
 
-    \item Linhas 35-36: funções \textit{inline} que ordenam as estruturas de
+    \item Linhas 35--36: funções \textit{inline} que ordenam as estruturas de
         dados por suas chaves numéricas.
 
     \item Linha 41: habilita a entrada de múltiplos arquivos de texto para
@@ -97,44 +71,41 @@ listado abaixo:
     \begin{center}
         \begin{minipage}{.32\linewidth}
             \begin{tabular}{>{\bfseries}ll}
-                \hline
-                e & $\approx 12.900494344206656\%$     \\ \hline
-                t & $\approx 9.228622978258158\%$      \\ \hline
-                a & $\approx 8.495812955201934\%$      \\ \hline
-                o & $\approx 7.534992892953012\%$      \\ \hline
-                i & $\approx 7.176120980751902\%$      \\ \hline
-                h & $\approx 7.16191923611903\%$       \\ \hline
-                n & $\approx 6.63501392800086\%$       \\ \hline
-                s & $\approx 6.014994572463682\%$      \\ \hline
-                r & $\approx 5.7699836041887324\%$     \\ \hline
+                e & $\approx 12.900494344206656\%$     \\
+                t & $\approx 9.228622978258158\%$      \\
+                a & $\approx 8.495812955201934\%$      \\
+                o & $\approx 7.534992892953012\%$      \\
+                i & $\approx 7.176120980751902\%$      \\
+                h & $\approx 7.16191923611903\%$       \\
+                n & $\approx 6.63501392800086\%$       \\
+                s & $\approx 6.014994572463682\%$      \\
+                r & $\approx 5.7699836041887324\%$     \\
             \end{tabular}
         \end{minipage}
         \begin{minipage}{.33\linewidth}
             \begin{tabular}{>{\bfseries}ll}
-                \hline
-                d & $\approx 4.045562489940431\%$      \\ \hline
-                l & $\approx 3.9625337394346226\%$     \\ \hline
-                u & $\approx 2.7658412228484253\%$     \\ \hline
-                c & $\approx 2.7387961613301724\%$     \\ \hline
-                m & $\approx 2.401041625930986\%$      \\ \hline
-                w & $\approx 2.2774658653863966\%$     \\ \hline
-                f & $\approx 2.264293232683442\%$      \\ \hline
-                g & $\approx 1.8497669473123507\%$     \\ \hline
-                p & $\approx 1.7295255094206964\%$     \\ \hline
+                d & $\approx 4.045562489940431\%$      \\
+                l & $\approx 3.9625337394346226\%$     \\
+                u & $\approx 2.7658412228484253\%$     \\
+                c & $\approx 2.7387961613301724\%$     \\
+                m & $\approx 2.401041625930986\%$      \\
+                w & $\approx 2.2774658653863966\%$     \\
+                f & $\approx 2.264293232683442\%$      \\
+                g & $\approx 1.8497669473123507\%$     \\
+                p & $\approx 1.7295255094206964\%$     \\
             \end{tabular}
         \end{minipage}
         \begin{minipage}{.33\linewidth}
             \begin{tabular}{>{\bfseries}ll}
-                \hline
-                b & $\approx 1.5355173283924984\%$     \\ \hline
-                y & $\approx 1.3292832976368709\%$     \\ \hline
-                v & $\approx 1.0720053151572956\%$     \\ \hline
-                k & $\approx 0.53785505905250075\%$    \\ \hline
-                j & $\approx 0.2396595862393739\%$     \\ \hline
-                x & $\approx 0.15218507219631834\%$    \\ \hline
-                q & $\approx 0.10402263387614184\%$    \\ \hline
-                z & $\approx 0.07668942101751178\%$    \\ \hline
-                  &                                    \\ \hline
+                b & $\approx 1.5355173283924984\%$     \\
+                y & $\approx 1.3292832976368709\%$     \\
+                v & $\approx 1.0720053151572956\%$     \\
+                k & $\approx 0.53785505905250075\%$    \\
+                j & $\approx 0.2396595862393739\%$     \\
+                x & $\approx 0.15218507219631834\%$    \\
+                q & $\approx 0.10402263387614184\%$    \\
+                z & $\approx 0.07668942101751178\%$    \\
+                  &                                    \\
             \end{tabular}
         \end{minipage}
     \end{center}
@@ -149,17 +120,16 @@ listado abaixo:
 
     \begin{center}
         \begin{tabular}{>{\bfseries}ll}
-            \hline
-            th & $\approx 4.276658660240072\%$     \\ \hline
-            he & $\approx 4.0442594323565895\%$    \\ \hline
-            in & $\approx 2.2615934381157863\%$    \\ \hline
-            er & $\approx 2.111202678574571\%$     \\ \hline
-            an & $\approx 1.9470851796970966\%$    \\ \hline
-            re & $\approx 1.8199745678214054\%$    \\ \hline
-            ed & $\approx 1.4616211932810376\%$    \\ \hline
-            on & $\approx 1.4461346155683348\%$    \\ \hline
-            ha & $\approx 1.4253685227263014\%$    \\ \hline
-            at & $\approx 1.386953765023363\%$     \\ \hline
+            th & $\approx 4.276658660240072\%$     \\
+            he & $\approx 4.0442594323565895\%$    \\
+            in & $\approx 2.2615934381157863\%$    \\
+            er & $\approx 2.111202678574571\%$     \\
+            an & $\approx 1.9470851796970966\%$    \\
+            re & $\approx 1.8199745678214054\%$    \\
+            ed & $\approx 1.4616211932810376\%$    \\
+            on & $\approx 1.4461346155683348\%$    \\
+            ha & $\approx 1.4253685227263014\%$    \\
+            at & $\approx 1.386953765023363\%$     \\
         \end{tabular}
     \end{center}
 
@@ -172,13 +142,13 @@ listado abaixo:
     \item Seja $y = DES(c, K)$ a função que codifica o texto $c$ com a chave
         $K$. $c$, por sua vez, será dividido em duas metades: $L_i$, a parte
         esquerda, e $R_i$, a parte direita, para cada rodada $i$. Portanto,
-        existe uma função $DES(L_iR_i, K)$ que caracteriza uma rodada da rede
-        de Feistel.
+        existe uma função $DES(L_{i} R_{i}, K)$ que caracteriza uma rodada
+        da rede de Feistel.
 
-    \item Hipótese: $DES(L_iR_i, K)$ é complemento de $DES(\overline{L_iR_i},
-        \overline{K})$ e vice-versa.
+    \item Hipótese: $DES(L_{i} R_{i}, K)$ é complemento de
+        $DES(\overline{L_{i} R_{i}}, \overline{K})$ e vice-versa.
 
-    \item Em $DES(L_iR_i, K)$:
+    \item Em $DES(L_{i} R_{i}, K)$:
 
     \begin{itemize}
 
@@ -188,7 +158,7 @@ listado abaixo:
 
     \end{itemize}
 
-    \item Em $DES(\overline{L_iR_i}, \overline{K})$:
+    \item Em $DES(\overline{L_{i} R_{i}}, \overline{K})$:
 
     \begin{itemize}
 
@@ -213,7 +183,7 @@ listado abaixo:
             termos:
 
         \begin{center}
-            \begin{tabular}{c|c|c|c}
+            \begin{tabular}{cccc}
              $\overline{L_i}$
                 & ${f(R_i,K_i)}$
                 & $\overline{{L_i} \oplus f(R_i,K_i)}$
@@ -227,14 +197,14 @@ listado abaixo:
 
     \end{itemize}
 
-    \item Todas as operações que compõem as funções $DES(L_iR_i, K)$ e
-        $DES(\overline{L_iR_i}, \overline{K})$ foram provadas complementos
+    \item Todas as operações que compõem as funções $DES(L_{i} R_{i}, K)$ e
+        $DES(\overline{L_{i} R_{i}}, \overline{K})$ foram provadas complementos
         mútuos de acordo com as regras impostas, portanto a hipótese é
         verdadeira.
 
     \item Por fim, por indução fraca, prova-se que o complemento cifrado
         funciona em todas as rodadas do DES, de número arbitrário, usando o
-        procedimento acima. \\ \qed
+        procedimento acima. \\ \qed{}
 
 \end{itemize}
 
@@ -281,8 +251,8 @@ criptoanálise:
     \item Logo, o número de possibilidades é igual a
         $60 \times 26^3 = \textbf{1054560}$.
 
-    \item O texto cifrado fornecido tem cerca de 400 caracteres. De acordo com
-        \cite{enigmaIC}, existe uma probabilidade muito baixa de que o texto
+    \item O texto cifrado fornecido tem cerca de 400 caracteres. De acordo
+        com~\cite{enigmaIC}, existe uma probabilidade muito baixa de que o texto
         com o maior IC não seja o correto para este número de caracteres. Deste
         modo, essa estratégia foi escolhida. É válido comentar que não se
         obteve sucesso em construir um método não-trivial caso existissem
@@ -296,26 +266,26 @@ O algoritmo que simula a Enigma é apresentado abaixo:
 
 \begin{itemize}
 
-    \item Linhas 6-8: Definição do deslocamento em relação ao alfabeto na sua
+    \item Linhas 6--8: Definição do deslocamento em relação ao alfabeto na sua
         ordem normal.
 
-    \item Linhas 11-25: Classe que define a \textit{plugboard}, não utilizada
+    \item Linhas 11--25: Classe que define a \textit{plugboard}, não utilizada
         neste programa, que contém apenas o método de troca de letras.
 
-    \item Linhas 28-34: Classe que define um refletor e sua permutação simples
+    \item Linhas 28--34: Classe que define um refletor e sua permutação simples
         de acordo com a definição.
 
-    \item Linhas 37-78: Classe que define um rotor, levando em conta seu
+    \item Linhas 37--78: Classe que define um rotor, levando em conta seu
         \textit{ringstellung} e \textit{grundstellung}, além do seu nome, para
         que sejam atribuídas suas características intrínsecas. O método
         \textit{wire} constrói as permutações de cada rotor. O método
         \textit{move} guia as letras ao passo dos rotores.
 
-    \item Linhas 81-146: A classe de nível mais alto, que define a Enigma, sua
+    \item Linhas 81--146: A classe de nível mais alto, que define a Enigma, sua
         composição e seu propósito, o método \textit{cipher}, que implementa
         matematicamente a lógica de movimentação de rotores.
 
-    \item Linhas 148-156: Uma instância da máquina com os rotores certos para
+    \item Linhas 148--156: Uma instância da máquina com os rotores certos para
         a mensagem cifrada (mais abaixo) é criada, que consegue cifrar
         qualquer texto enviado por linha de comando com estas configurações.
 
@@ -328,11 +298,11 @@ abaixo:
 
 \begin{itemize}
 
-    \item Linhas 14-20: calcula
+    \item Linhas 14--20: calcula
         $IC = \sum_{i=A}^Z \frac{f_i \times (f_i - 1)}{n \times (n - 1)}$ tal
-        como descrito por Smart \cite[p. 73]{Smart:2004:CI:1206247}.
+        como descrito por Smart~\cite[p. 73]{Smart:2004:CI:1206247}.
 
-    \item Linhas 31-32: Armazena o texto em um gerador, que será tratado para
+    \item Linhas 31--32: Armazena o texto em um gerador, que será tratado para
         os resultados desejados.
 
     \item Linha 39: Filtra o conjunto de ICs. Por precaução, a amplitude do
@@ -341,7 +311,7 @@ abaixo:
     \item Linha 40: Ordena os resultados pelo IC, para que o resultado seja
         facilmente distinguível.
 
-    \item Linhas 42-44: Armazena o resultado em disco para acesso posterior e
+    \item Linhas 42--44: Armazena o resultado em disco para acesso posterior e
         pesquisa, se necessário.
 
 \end{itemize}
@@ -351,7 +321,7 @@ original foi adicionado abaixo para comparação de conteúdo, visto que a
 pontuação e ênfase contextual podem ser ambíguas. Após o texto decifrado, o IC
 apresenta um valor muito próximo ao IC da língua inglesa ($0.068$). Por conta
 da quantidade de caracteres no texto cifrado, nenhuma outra possibilidade de
-texto ultrapassou a marca de $0.043$ em relação ao IC.
+texto ultrapassou a marca de $0.043$ em relação ao índice.
 
 \begin{verbatim}
 ('(FSC III II I): AS ECONOMICS IS KNOWN AS THE MISERABLE SCIENCE SOFTWARE
@@ -363,13 +333,13 @@ WILL DISCOVER THAT SOFTWARE ENGINEERING HAS ACCEPTED AS ITS HOW TO PROGRAM IF
 YOU CANNOT EDSGER DIJKSTRA', 0.06592372083555963)
 \end{verbatim}
 
-\textit{As economics is known as "The Miserable Science", software engineering
-should be known as "The Doomed Discipline", doomed because it cannot even
+\textit{As economics is known as ``The Miserable Science'', software engineering
+should be known as ``The Doomed Discipline'', doomed because it cannot even
 approach its goal since its goal is self-contradictory. Software engineering,
 of course, presents itself as another worthy cause, but that is eyewash: if
 you carefully read its literature and analyse what its devotees actually do,
-you will discover that software engineering has accepted as its charter "How
-to program if you cannot.".} \cite{dijkstra1989cruelty} \vspace{2mm}
+you will discover that software engineering has accepted as its charter ``How
+to program if you cannot.''.}~\cite{dijkstra1989cruelty} \vspace{2mm}
 
 Finalmente, o \textit{grundstellung} é igual a \textbf{F, S, C} e o
 \textit{walzenlage} é igual a \textbf{III, II, I}.
@@ -381,23 +351,23 @@ por cifrar uma mensagem através da SPN será omitido neste documento, mas pode
 ser encontrado \href{https://github.com/zambonin/UFSC-INE5451/blob/master/classical/spn.py}{aqui}.
 Este ataque está direcionado para uma certa subchave e \textit{input-xor}
 definido, para que um paralelo com Stinson
-\cite[p. 94]{Stinson:2002:CTP:515609} seja realizado.
+~\cite[p. 94]{Stinson:2002:CTP:515609} seja realizado.
 
 \lstinputlisting[language=Python]{spn_breaker.py}
 
 \begin{itemize}
 
-    \item Linhas 22-39: Cria todas as quádruplas de texto em claro, e cifrado,
+    \item Linhas 22--39: Cria todas as quádruplas de texto em claro, e cifrado,
         disponíveis sendo um \textit{input-xor} fixo. Após o procedimento, 200
         instâncias aleatórias, sem repetição, são escolhidas e repassadas ao
         próximo método. Relembrando: a quádrupla consiste de um $x$ e um $x^*$
         amarrados por um \textit{input-xor}, e seus resultados $y$ e $y^*$ após
-        serem codificados pela SPN.
+        serem codificados.
 
-    \item Linhas 42-43: Declaração de uma operação $\oplus$ \textit{multibit}
+    \item Linhas 42--43: Declaração de uma operação $\oplus$ \textit{multibit}
         para praticidade nas iterações do ataque diferencial.
 
-    \item Linhas 46-75: O método principal consiste da construção de todas as
+    \item Linhas 46--75: O método principal consiste da construção de todas as
         possibilidades de subchave para que a contagem seja realizada, e da
         lógica de ataque probabilístico. Após o filtro de pares inúteis, os
         bits $v'$ são manipulados de modo que passam pela permutação inversa
@@ -411,7 +381,7 @@ definido, para que um paralelo com Stinson
 
 Entretanto, com esta implementação, não foi possível concluir que
 $T = c \times e^{-1}$, onde $e \approx 38$ e $50 < T < 100$. A quantidade
-observada foi um pouco maior -- cerca de 200 quádruplas foram necessárias para
+observada foi um pouco maior --- cerca de 200 quádruplas foram necessárias para
 obtenção da subchave em 80\% das vezes. Com $T = 100$, inferiu-se que em menos
 de 50\% das vezes isso acontece.
 

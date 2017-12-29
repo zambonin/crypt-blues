@@ -1,29 +1,13 @@
-\documentclass{article}
+\documentclass{../sftex/sftex}
 
-\usepackage[brazil]{babel}
-\usepackage[T1]{fontenc}
-\usepackage[a4paper, margin=2cm]{geometry}
-\usepackage[colorlinks, urlcolor=blue, citecolor=red]{hyperref}
-\usepackage[utf8]{inputenc}
-\usepackage{amsthm, amsmath, array, color, listings, mathtools}
+\usepackage{amsthm, amsmath, array, mathtools}
 
-\definecolor{codegreen}{rgb}{0,0.6,0}
-\definecolor{codegray}{rgb}{0.5,0.5,0.5}
-\definecolor{codepurple}{rgb}{0.58,0,0.82}
-\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
-
-\lstdefinestyle{mystyle}{
-    commentstyle=\color{codegreen},
-    keywordstyle=\color{blue},
-    numberstyle=\tiny\color{codegray},
-    stringstyle=\color{codepurple},
-    basicstyle=\footnotesize\ttfamily,
-    breaklines=true,
-    numbers=left,
-    showstringspaces=false
-}
-
-\lstset{style=mystyle}
+\title{Criptografia moderna \\ \small{Trabalho 2, Grupo 3}}
+\author{Gustavo Zambonin, Ranieri Schroeder Althoff}
+\email{\{gustavo.zambonin,ranieri.althoff\}@grad.ufsc.br}
+\src{https://github.com/zambonin/ufsc-ine5451}
+\uniclass{Introdução à Criptoanálise}
+\classcode{UFSC-INE5451}
 
 \renewcommand*\theenumi{\textbf{\alph{enumi}}}
 
@@ -31,20 +15,7 @@
 
 \begin{document}
 
-\begin{center}
-    \section*{INE5451 - Introdução à Criptoanálise (2015/1)}
-    \textbf{
-        Trabalho 2, Grupo 3 \\
-        Gustavo Zambonin, Ranieri Schroeder Althoff
-    }
-\end{center}
-
-\textbf{Nota}: todos os algoritmos apresentados neste documento podem ser
-encontrados também \href{https://github.com/zambonin/ufsc-ine5451}{neste
-repositório}. \break O arquivo
-\href{https://raw.githubusercontent.com/zambonin/UFSC-INE5451/master/modern/utils.py}{utils.py}
-contém algumas estruturas aritméticas utilizadas por múltiplos algoritmos, e
-poderá aparecer nas descrições abaixo.
+\maketitle
 
 \subsection*{Questão 1}
 
@@ -67,11 +38,11 @@ poderá aparecer nas descrições abaixo.
             encontra-se
             \href{https://raw.githubusercontent.com/zambonin/UFSC-INE5451/master/modern/nl.py}{aqui}.
 
-        \item Linhas 7-9: responsável por realizar a operação $\oplus$ sobre
+        \item Linhas 7--9: responsável por realizar a operação $\oplus$ sobre
             múltiplos bits, especializada para esta implementação, visto que o
             processo só é fundamentado se um bit válido ocorrer.
 
-        \item Linhas 19-20: realiza a operação $\oplus$ entre os resultados do
+        \item Linhas 19--20: realiza a operação $\oplus$ entre os resultados do
             $\oplus$ entre as variáveis de entrada e saída com relação à cada
             permutação da caixa-S.
 
@@ -79,48 +50,47 @@ poderá aparecer nas descrições abaixo.
 
     A tabela resultante segue abaixo. \vspace{2mm}
 
-    \begin{tabular}{|>{\bfseries}c|*{16}c|}
-        \hline
+    \begin{tabular}{>{\bfseries}c*{16}c}
         & \textbf{0} & \textbf{1} & \textbf{2} & \textbf{3}
         & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7}
         & \textbf{8} & \textbf{9} & \textbf{A} & \textbf{B}
-        & \textbf{C} & \textbf{D} & \textbf{E} & \textbf{F} \\ \hline
+        & \textbf{C} & \textbf{D} & \textbf{E} & \textbf{F} \\
         0   & 16 & 8  & 8  & 8  & 8  & 8  & 8  & 8
-            & 8  & 8  & 8  & 8  & 8  & 8  & 8  & 8          \\ \hline
+            & 8  & 8  & 8  & 8  & 8  & 8  & 8  & 8          \\
         1   & 8  & 10 & 6  & 8  & 10 & 8  & 8  & 6
-            & 4  & 6  & 6  & 8  & 10 & 8  & 4  & 10         \\ \hline
+            & 4  & 6  & 6  & 8  & 10 & 8  & 4  & 10         \\
         2   & 8  & 10 & 8  & 10 & 6  & 8  & 6  & 8
-            & 6  & 8  & 10 & 4  & 4  & 6  & 8  & 10         \\ \hline
+            & 6  & 8  & 10 & 4  & 4  & 6  & 8  & 10         \\
         3   & 8  & 8  & 10 & 10 & 8  & 12 & 10 & 6
-            & 6  & 6  & 8  & 8  & 10 & 6  & 12 & 8          \\ \hline
+            & 6  & 6  & 8  & 8  & 10 & 6  & 12 & 8          \\
         4   & 8  & 10 & 8  & 6  & 8  & 10 & 8  & 6
-            & 10 & 4  & 10 & 8  & 6  & 8  & 6  & 4          \\ \hline
+            & 10 & 4  & 10 & 8  & 6  & 8  & 6  & 4          \\
         5   & 8  & 12 & 6  & 6  & 10 & 10 & 8  & 12
-            & 6  & 10 & 8  & 8  & 8  & 8  & 10 & 6          \\ \hline
+            & 6  & 10 & 8  & 8  & 8  & 8  & 10 & 6          \\
         6   & 8  & 8  & 12 & 8  & 10 & 10 & 6  & 10
-            & 8  & 8  & 8  & 12 & 6  & 6  & 6  & 10         \\ \hline
+            & 8  & 8  & 8  & 12 & 6  & 6  & 6  & 10         \\
         7   & 8  & 6  & 6  & 8  & 12 & 6  & 10 & 8
-            & 8  & 6  & 6  & 8  & 4  & 6  & 10 & 8          \\ \hline
+            & 8  & 6  & 6  & 8  & 4  & 6  & 10 & 8          \\
         8   & 8  & 10 & 10 & 8  & 8  & 6  & 6  & 8
-            & 10 & 8  & 4  & 6  & 10 & 4  & 8  & 6          \\ \hline
+            & 10 & 8  & 4  & 6  & 10 & 4  & 8  & 6          \\
         9   & 8  & 8  & 8  & 12 & 10 & 10 & 6  & 10
-            & 10 & 6  & 6  & 6  & 8  & 12 & 8  & 8          \\ \hline
+            & 10 & 6  & 6  & 6  & 8  & 12 & 8  & 8          \\
         A   & 8  & 12 & 10 & 10 & 6  & 6  & 12 & 8
-            & 8  & 8  & 6  & 10 & 6  & 10 & 8  & 8          \\ \hline
+            & 8  & 8  & 6  & 10 & 6  & 10 & 8  & 8          \\
         B   & 8  & 6  & 12 & 6  & 8  & 6  & 8  & 10
-            & 4  & 6  & 8  & 6  & 8  & 10 & 8  & 6          \\ \hline
+            & 4  & 6  & 8  & 6  & 8  & 10 & 8  & 6          \\
         C   & 8  & 8  & 10 & 10 & 12 & 8  & 10 & 6
-            & 8  & 12 & 10 & 6  & 8  & 8  & 6  & 6          \\ \hline
+            & 8  & 12 & 10 & 6  & 8  & 8  & 6  & 6          \\
         D   & 8  & 6  & 8  & 6  & 6  & 12 & 10 & 8
-            & 8  & 10 & 4  & 6  & 6  & 8  & 6  & 8          \\ \hline
+            & 8  & 10 & 4  & 6  & 6  & 8  & 6  & 8          \\
         E   & 8  & 6  & 6  & 12 & 6  & 8  & 8  & 10
-            & 6  & 8  & 8  & 10 & 8  & 6  & 6  & 4          \\ \hline
+            & 6  & 8  & 8  & 10 & 8  & 6  & 6  & 4          \\
         F   & 8  & 8  & 8  & 8  & 8  & 8  & 12 & 12
-            & 10 & 6  & 10 & 6  & 10 & 6  & 6  & 10         \\ \hline
+            & 10 & 6  & 10 & 6  & 10 & 6  & 6  & 10         \\
     \end{tabular}
 
     \item A aproximação linear consiste em seguir a variável escolhida no
-        percurso da SPN. Sabendo que a variável aleatória a ser analisada é
+        percurso da SPN, e sabendo que a variável aleatória a ser analisada é
         $\textbf{X}_{16} \oplus \textbf{U}^{4}_{1} \oplus \textbf{U}^{4}_{9}$,
         a entrada em $\textbf{S}^{1}_{4}$ é igual a $0001_{2} = 1_{10}$. Isto
         denota a variável $a$ em $N_{L}(a, b)$. $b$, por outro lado, pode ser
@@ -142,7 +112,7 @@ poderá aparecer nas descrições abaixo.
     \item A justificativa do ataque linear à SPN é semelhante ao ataque
         diferencial, no sentido de ambos usarem bits do texto em claro e bits
         antes da última caixa-S. Para tal, precisa-se de variáveis aleatórias
-        que contenham tais bits - o que acontece neste caso. Esta aproximação
+        que contenham tais bits --- o que acontece neste caso. Esta aproximação
         incluirá três caixas-S ativas: \vspace{-4mm}
 
     \begin{align*}
@@ -192,10 +162,10 @@ poderá aparecer nas descrições abaixo.
 
         \item Linha 7: gera uma chave de 32 bits aleatória.
 
-        \item Linhas 23-29: gera $2^{16}$ textos e escolhe 1500 destes
+        \item Linhas 23--29: gera $2^{16}$ textos e escolhe 1500 destes
             aleatoriamente, cifrando-os com a chave escolhida.
 
-        \item Linhas 38-44: lógica de contadores para cada candidato às
+        \item Linhas 38--44: lógica de contadores para cada candidato às
             subchaves.
 
         \item Linha 48: filtra o contador que mais se destacou e mostra as
@@ -211,12 +181,12 @@ O RSA é um cifrador baseado em criptografia com chave pública. A dificuldade
 de quebrá-lo está centrada no uso de números primos grandes para codificar
 mensagens e a inabilidade computacional (até o presente momento) de fatorar
 tais números. Uma chave é composta por cinco elementos: $n$ e seus fatores
-primos $p$ e $q$, e $a*b \equiv 1$ (mod $\phi$($n$)). Escolhe-se,
+primos $p$ e $q$, e $a*b \equiv 1 \pmod{\phi(n)}$. Escolhe-se,
 cuidadosamente, dois primos $p$ e $q$ (tem-se então $n = p*q$), $b$ tal que
-$mdc(b, \phi$($n$))$ = 1$, e calcula-se $a = b^{-1}$ (mod $\phi$($n$)).
+$mdc(b, \phi(n)) = 1$, e calcula-se $a = b^{-1} \pmod{\phi(n)}$.
 $n$ e $b$ são públicos, enquanto $p$, $q$ e $a$ são secretos. As funções de
 codificação e decodificação, respectivamente, são as seguintes:
-$x^{b}$ (mod $n$) e $y^{a}$ (mod $n$) para $x$, $y \in Z_{n}$. Abaixo, segue a
+$x^{b} \pmod{n}$ e $y^{a} \pmod{n}$ para $x$, $y \in Z_{n}$. Abaixo, segue a
 implementação de um decodificador RSA, dados os números públicos $n$ e $b$.
 
 \begin{itemize}
@@ -230,20 +200,20 @@ implementação de um decodificador RSA, dados os números públicos $n$ e $b$.
     \item Linha 1: o método de decodificação é pertinente a esta implementação
         de RSA, e por isto não foi movido para o arquivo de utilidades.
 
-    \item Linhas 4-5: cria um vetor que contém os coeficientes da função que
+    \item Linhas 4--5: cria um vetor que contém os coeficientes da função que
         codifica numericamente as palavras. Ele será invertido por conta do
         modo que as operações matemáticas são conduzidas.
 
-    \item Linhas 8-9: itera sobre a inversão do vetor acima, para que as
+    \item Linhas 8--9: itera sobre a inversão do vetor acima, para que as
         letras estejam na ordem correta, e calcula a posição do número na
         codificação ASCII, assim retornando uma palavra legível.
 
-    \item Linhas 15-16: implementação da função totiente de Euler
-        ($\phi$($n$)), que usa o método $p - 1$, discutido abaixo, para
+    \item Linhas 15--16: implementação da função totiente de Euler
+        ($\phi(n)$), que usa o método $p - 1$, discutido abaixo, para
         descobrir os fatores de um número primo, e assim retornar
         $(p-1)*(q-1)$.
 
-    \item Linha 21: computa $a = b^{-1}$ (mod $\phi$($n$)).
+    \item Linha 21: computa $a = b^{-1} \pmod{\phi(n)}$.
 
     \item Linha 23: executa o processo $i^{a}$ (mod $n$), onde $i$ é cada um
         dos pedaços de texto codificados, com o algoritmo
@@ -273,7 +243,7 @@ chose the place, tired from their long journey, sad for having left the
 motherland behind, and this place reminded them of there, so they settled
 here, forgetting that they had left there because the land wasn't so good.
 So the new life turned out to be a lot like the old, except the winters are
-worse.} \cite{keillor1985lake}
+worse.}~\cite{keillor1985lake}
 
 \subsection*{Questão 5}
 
@@ -282,7 +252,7 @@ $p -1$, é utilizado para fatorar números até um certo número de dígitos, po
 sua complexidade torna-se impraticável quando fatores muito grandes tentam ser
 calculados. Tem como base, na aritmética modular, o Teorema de Fermat (mais
 especificamente a expressão $a^{p-1} \equiv 1$ (mod $p$)). A ideia do
-algoritmo é encontrar um fator $p - 1 \mid B!$ para algum $B$ pequeno.
+algoritmo é encontrar um fator $p - 1 \mid B$! para algum $B$ pequeno.
 Utilizando Fermat, conclui-se que $2^{B!} \equiv 1$ (mod $p$), o que significa
 que $p \mid (2^{B!} - 1)$. Como $p \mid n$ também se aplica, pois $p$ é um
 fator de $n$, então por definição $p \mid mdc(2^{B!} - 1, n)$ existe, e esse
@@ -317,7 +287,7 @@ quociente $\textbf{2469135821}$.
 Outro algoritmo para fatoração de inteiros foi concebido por Dixon. Baseia-se
 em encontrar certas congruências do estilo $x^2 \equiv y^2$ (mod $n$), pois se
 $n \mid (x-y)(x+y)$, então $mdc(x-y, n)$ será um bom fator de $n$. Utilizando
-uma base de primos "pequenos", uma iteração é realizada de modo a achar tais
+uma base de primos ``pequenos'', uma iteração é realizada de modo a achar tais
 congruências e, por fim, realizar o processo de máximo divisor comum sobre
 estas. A implementação é discutida abaixo.
 
@@ -328,14 +298,14 @@ estas. A implementação é discutida abaixo.
     \item Linha 2: define a base de fatores primos com um teste de primalidade
         simples.
 
-    \item Linhas 6-7: definem o número de iterações a ser feitas (todos os
+    \item Linhas 6--7: definem o número de iterações a ser feitas (todos os
         números entre $\sqrt{n}$ e $n$ comparados com todos os números da base
         de fatores).
 
-    \item Linhas 8-9: testa a congruência característica e armazena o par de
+    \item Linhas 8--9: testa a congruência característica e armazena o par de
         inteiros para o processo de MDC posterior.
 
-    \item Linhas 12-14: todos os valores são submetidos ao MDC característico,
+    \item Linhas 12--14: todos os valores são submetidos ao MDC característico,
         e caso um deles retorne um fator não-trivial, o processo termina.
 
 \end{itemize}
@@ -363,14 +333,14 @@ compor o expoente $a$. A implementação da estratégia será dirimida abaixo.
 
     \lstinputlisting[language=Python, firstline=7]{shanks.py}
 
-    \item Linhas 3-4: computa valores que serão usados repetidamente
+    \item Linhas 3--4: computa valores que serão usados repetidamente
         ($\alpha^{m}$ (mod $p$) e a inversa modular de $\alpha$).
 
-    \item Linhas 8-9: o algoritmo busca encontrar $j$ e $i$ tal que seus
+    \item Linhas 8--9: o algoritmo busca encontrar $j$ e $i$ tal que seus
         respectivos pares sejam $\alpha^{mj}$ (mod $p$) e $\beta\alpha^{-i}$
         (mod $p$), já que estes são iguais.
 
-    \item Linhas 11-13: busca os elementos adjacentes às segundas coordenadas
+    \item Linhas 11--13: busca os elementos adjacentes às segundas coordenadas
         se estas forem iguais.
 
     \item Linha 14: resolve $\log_{\alpha}\beta = i * m + j$.
@@ -378,10 +348,10 @@ compor o expoente $a$. A implementação da estratégia será dirimida abaixo.
 \end{itemize}
 
 Por fim, o resultado de
-$log_{6} \: 248388$ em $Z^{*}_{458009} = a = \textbf{232836}$. Isto pode ser
+$\log_{6} \: 248388$ em $Z^{*}_{458009} = a = \textbf{232836}$. Isto pode ser
 verificado aplicando o número encontrado no logaritmo discreto. De fato,
-$6^{232836} \equiv 248388$ (mod $458009$), pois
-$6^{232836}$ *mod $458009$) $= 248388$.
+$6^{232836} \equiv 248388 \pmod{458009}$, pois
+$6^{232836} \pmod{458009} = 248388$.
 
 \bibliography{ine5451_t2}
 \bibliographystyle{plain}
